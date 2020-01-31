@@ -1,19 +1,27 @@
 {
-  "name": "myblog",
+  "name": "purple4pur-s-blog",
   "version": "0.1.0",
-  "description": "Purple4pur's Blog",
+  "description": "A blog built with React, php and mariaDB.",
   "private": true,
   "homepage": ".",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build"
   },
-  "author": "Purple4pur",
+  "author": "Purple4pur (purple4pur@gmail.com)",
   "dependencies": {
+    "axios": "^0.19.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-markdown": "^4.3.1",
+    "react-redux": "^7.1.3",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "^3.3.0"
+    "react-scripts": "^3.3.0",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
+  },
+  "repository": {
+    "url": "https://github.com/purple4pur/blog-with-cms"
   },
   "eslintConfig": {
     "extends": "react-app"

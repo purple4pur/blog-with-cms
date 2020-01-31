@@ -52,7 +52,7 @@
    ```
 2. 安装依赖库
    ```
-   npm i -S react react-dom react-scripts
+   npm i -S react react-dom react-scripts react-router-dom
    npm i -S redux redux-thunk react-redux
    npm i -S axios react-markdown
    ```
@@ -66,6 +66,7 @@
 
 1. 后端的事自己用本地服务器解决。
 2. 将 `/public/php` 目录下的 `dbConst.example.php` 重命名为 `dbConst.php`，并修改为你自己的数据库信息。
+3. 后端页面请根据自己数据库的结构进行修改。
 
 ## 关于 [CHANGELOG](https://github.com/purple4pur/blog-with-cms/blob/master/CHANGELOG.md)
 
@@ -73,7 +74,7 @@
 
 ## 交流
 
-关于本 repo 的任何问题，可以移步 [Issues](https://github.com/purple4pur/blog-with-cms/issues)，也欢迎从以下方式直接联系我，一起交流学习。
+关于本 repo 的任何问题，可以移步 [Issues](https://github.com/purple4pur/blog-with-cms/issues)，也欢迎从以下方式直接联系我（**务必备注清楚**），一起交流学习。
 
 - Wechat: erCtain
 - E-mail: [pruple4pur@gmail.com](mailto:purple4pur@gmail.com)
