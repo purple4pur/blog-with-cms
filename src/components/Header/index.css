@@ -1,0 +1,158 @@
+header {
+  position: relative;
+}
+
+.header-ui {
+  height       : 48px;
+  background   : #2c3e50;
+  border-bottom: 1px solid #ecf0f1;
+  position     : relative;
+  z-index      : 2;
+}
+
+.header-ui span {
+  font-size: 20px;
+  color    : #ecf0f1;
+  position : absolute;
+  top      : 50%;
+  left     : 14px;
+  transform: translateY(-50%);
+}
+
+.header-ui img {
+  height   : 30px;
+  position : absolute;
+  top      : 50%;
+  left     : 50%;
+  transform: translate(-50%, -50%);
+}
+
+.header-nav {
+  width     : 100vw;
+  height    : Calc(100vh - 48px);
+  background: rgba(44, 62, 80, 0);
+  position  : absolute;
+  top       : -100vh;
+  transition: .5s;
+}
+
+.openMenu {
+  top       : 48px;
+  background: rgba(54, 69, 83, 0.7);
+}
+
+.header-nav ul {
+  background: #2c3e50;
+}
+
+.header-nav ul li {
+  padding      : 12px 0;
+  padding-left : 20px;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.header-nav-mobile {
+  font-size  : 16px;
+  font-weight: bold;
+  color      : #ecf0f1;
+  cursor     : pointer;
+}
+
+.header-nav-desktop {
+  display: none;
+}
+
+.header-nav-bg-touch {
+  width   : 100%;
+  height  : Calc(100% - 49.8px * 5);
+  position: absolute;
+  bottom  : 0;
+}
+
+@media only screen and (min-width: 600px) {
+  /* for tablets and desktops */
+
+  .header-ui {
+    height: 40px;
+  }
+
+  .header-ui span {
+    display: none;
+  }
+
+  .header-ui img {
+    height: 28px;
+    left  : 20%;
+  }
+
+  .openMenu {
+    top       : 0;
+    background: none;
+  }
+
+  .header-nav {
+    width     : auto;
+    height    : auto;
+    top       : 50%;
+    right     : 20%;
+    transform : translateY(-50%);
+    z-index   : 2;
+    transition: none;
+  }
+
+  .header-nav ul {
+    background     : none;
+    float          : right;
+    list-style-type: none;
+  }
+
+  .header-nav ul li {
+    margin-left  : 36px;
+    padding      : 0;
+    border-bottom: none;
+    float        : left;
+    position     : relative;
+  }
+
+  .header-nav-mobile {
+    display: none;
+  }
+
+  .header-nav-desktop {
+    display    : block;
+    font-size  : 16px;
+    font-weight: bold;
+    color      : #ecf0f1;
+    cursor     : pointer;
+  }
+
+  .header-nav-desktop div {
+    width        : 84px;
+    height       : 46px;
+    background   : #8e44ad;
+    border-radius: 4px;
+    position     : absolute;
+    top          : -50px;
+    left         : 50%;
+    transform    : translate(-50%, -50%);
+    transition   : .3s;
+  }
+
+  .header-nav-desktop div span {
+    font-size: 12px;
+    position : absolute;
+    top      : 50%;
+    left     : 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .hover div {
+    top: 50%;
+  }
+
+  .header-nav-bg-touch {
+    width  : 0;
+    height : 0;
+    display: none;
+  }
+}

@@ -1,0 +1,21 @@
+footer {
+  text-align        : center;
+  font-size         : 14px;
+  color             : #bdc3c7;
+  margin            : 20px;
+  display           : grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+footer span {
+  padding: 4px 0;
+}
+
+footer a {
+  color     : #bdc3c7;
+  transition: .5s;
+}
+
+footer a:hover {
+  color: #95a5a6;
+}
