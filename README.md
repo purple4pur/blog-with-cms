@@ -39,9 +39,17 @@
 
 初始进度：完成前端的 header 和 footer，数据库完成设计，服务器页面能正确显示数据。
 
-- [ ] 各个分类显示文章列表
+待完成：
+
 - [ ] 增加标签栏
+- [ ] markdown 渲染出 html
 - [ ] ...
+- [ ] CMS
+- [ ] ...
+
+已完成：
+
+- [x] 各个分类显示文章列表
 
 ## 本地搭建
 
@@ -74,7 +82,7 @@
 
 ## 交流
 
-关于本 repo 的任何问题，可以移步 [Issues](https://github.com/purple4pur/blog-with-cms/issues)，也欢迎从以下方式直接联系我（**务必备注清楚**），一起交流学习。
+关于本 repo 的任何问题，可以移步 [Issues](https://github.com/purple4pur/blog-with-cms/issues)，我也会在 [Issues](https://github.com/purple4pur/blog-with-cms/issues) 里记录开发中的一些问题。也欢迎从以下方式直接联系我（**务必备注清楚**），一起交流学习。
 
 - Wechat: erCtain
 - E-mail: [pruple4pur@gmail.com](mailto:purple4pur@gmail.com)
