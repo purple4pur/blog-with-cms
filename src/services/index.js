@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const ajax = axios.create({
-  baseURL: 'http://localhost/php'
+  baseURL: 'https://purple4pur.com/php'
 })
 
 export const getCategoryList = id => (

@@ -1,6 +1,8 @@
 <?php
 require_once './dbConst.php';
 
+header('Access-Control-Allow-Origin:*');
+
 $categoryID = isset($_GET["categoryID"]) ? $_GET["categoryID"] : "0";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
