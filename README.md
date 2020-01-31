@@ -29,7 +29,7 @@
   - 服务器
     - [php](https://www.php.net/)：需要的功能不复杂，再说了别的我也不会……
   - 数据库
-    - [mariaDB](https://mariadb.org/)：mySQL 的 一个变体
+    - [mariaDB](https://mariadb.org/)：mySQL 的一个变体
 
 当然由于博客还在搭建中，可能用的技术还会更改，我会及时更新的。
 
