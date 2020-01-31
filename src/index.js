@@ -1,11 +1,16 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { BrowserRouter as Router } from 'react-router-dom'
-import App from './App'
+import { Provider } from 'react-redux'
+
+import Blog from './Blog'
+import store from './redux/store'
 
 render(
-  <Router forceRefresh>
-    <App />
-  </Router>,
+  <Provider store={store}>
+    <Router forceRefresh>
+      <Blog />
+    </Router>
+  </Provider>,
   document.querySelector("#root")
 )

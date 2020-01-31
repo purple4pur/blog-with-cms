@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import React, { PureComponent as Component } from 'react'
+import { NavLink as Link } from 'react-router-dom'
+
 import './index.css'
 import logo from './logo.ico'
 

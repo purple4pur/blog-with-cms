@@ -70,7 +70,7 @@ header {
 }
 
 @media only screen and (min-width: 600px) {
-  /* for tablets and desktops */
+  /* for tablets */
 
   .header-ui {
     height: 40px;
@@ -81,8 +81,9 @@ header {
   }
 
   .header-ui img {
-    height: 28px;
-    left  : 20%;
+    height   : 28px;
+    left     : 8px;
+    transform: translate(0, -50%);
   }
 
   .openMenu {
@@ -94,7 +95,7 @@ header {
     width     : auto;
     height    : auto;
     top       : 50%;
-    right     : 20%;
+    right     : 8px;
     transform : translateY(-50%);
     z-index   : 2;
     transition: none;
@@ -154,5 +155,17 @@ header {
     width  : 0;
     height : 0;
     display: none;
+  }
+}
+
+@media only screen and (min-width: 816px) {
+  /* for desktops */
+
+  .header-ui img {
+    left: Calc((100vw - 800px) / 2);
+  }
+
+  .header-nav {
+    right: Calc((100vw - 800px) / 2);
   }
 }

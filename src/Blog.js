@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React, { PureComponent as Component } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
-import './App.css'
+
+import './Blog.css'
 import {
   Home,
   Coding,
@@ -9,7 +10,7 @@ import {
   About
 } from 'views'
 
-export default class App extends Component {
+export default class Blog extends Component {
   render() {
     return (
       <>
