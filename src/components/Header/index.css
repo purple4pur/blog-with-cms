@@ -82,7 +82,7 @@ header {
 
   .header-ui img {
     height   : 28px;
-    left     : 8px;
+    left     : 20px;
     transform: translate(0, -50%);
   }
 
@@ -95,7 +95,7 @@ header {
     width     : auto;
     height    : auto;
     top       : 50%;
-    right     : 8px;
+    right     : 20px;
     transform : translateY(-50%);
     z-index   : 2;
     transition: none;
@@ -158,14 +158,14 @@ header {
   }
 }
 
-@media only screen and (min-width: 816px) {
+@media only screen and (min-width: 1000px) {
   /* for desktops */
 
   .header-ui img {
-    left: Calc((100vw - 800px) / 2);
+    left: Calc((100vw - 960px) / 2);
   }
 
   .header-nav {
-    right: Calc((100vw - 800px) / 2);
+    right: Calc((100vw - 960px) / 2);
   }
 }
