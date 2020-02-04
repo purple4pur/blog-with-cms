@@ -7,7 +7,8 @@ import {
   Coding,
   Creating,
   Thoughts,
-  About
+  About,
+  Tags
 } from 'views'
 
 export default class Blog extends Component {
@@ -20,6 +21,7 @@ export default class Blog extends Component {
           <Route component={Creating} path="/creating" exact />
           <Route component={Thoughts} path="/thoughts" exact />
           <Route component={About} path="/about" exact />
+          <Route component={Tags} path="/tags" exact />
           <Redirect to="/" />
         </Switch>
       </>

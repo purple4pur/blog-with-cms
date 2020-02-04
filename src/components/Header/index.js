@@ -13,7 +13,8 @@ export default class Header extends Component {
       hoverClass2: '',
       hoverClass3: '',
       hoverClass4: '',
-      hoverClass5: ''
+      hoverClass5: '',
+      hoverClass6: ''
     }
     this.toggleMenu = this.toggleMenu.bind(this)
     this.handleOver1 = this.handleOver1.bind(this)
@@ -21,6 +22,7 @@ export default class Header extends Component {
     this.handleOver3 = this.handleOver3.bind(this)
     this.handleOver4 = this.handleOver4.bind(this)
     this.handleOver5 = this.handleOver5.bind(this)
+    this.handleOver6 = this.handleOver6.bind(this)
     this.handleOut = this.handleOut.bind(this)
   }
 
@@ -61,6 +63,11 @@ export default class Header extends Component {
       hoverClass5: ' hover'
     })
   }
+  handleOver6() {
+    this.setState({
+      hoverClass6: ' hover'
+    })
+  }
 
   handleOut() {
     this.setState({
@@ -68,23 +75,24 @@ export default class Header extends Component {
       hoverClass2: '',
       hoverClass3: '',
       hoverClass4: '',
-      hoverClass5: ''
+      hoverClass5: '',
+      hoverClass6: ''
     })
   }
 
   render() {
     return (
       <header>
-        <div class="header-ui">
-          <span onClick={this.toggleMenu}><i class="fas fa-bars"></i></span>
+        <div className="header-ui">
+          <span onClick={this.toggleMenu}><i className="fas fa-bars"></i></span>
           <Link to="/"><img src={logo} alt="Purple4pur's Blog" /></Link>
         </div>
         <nav className={'header-nav' + this.state.navClass}>
-          <div class="header-nav-bg-touch" onClick={this.toggleMenu}></div>
+          <div className="header-nav-bg-touch" onClick={this.toggleMenu}></div>
           <ul>
 
             <li>
-              <Link to="/" class="header-nav-mobile">首页 | HOME</Link>
+              <Link to="/" className="header-nav-mobile">首页 | HOME</Link>
               <Link to="/"
                 className={'header-nav-desktop' + this.state.hoverClass1}
                 onMouseOver={this.handleOver1}
@@ -96,7 +104,7 @@ export default class Header extends Component {
             </li>
 
             <li>
-              <Link to="/coding" class="header-nav-mobile">代码 | CODING</Link>
+              <Link to="/coding" className="header-nav-mobile">代码 | CODING</Link>
               <Link to="/coding"
                 className={'header-nav-desktop' + this.state.hoverClass2}
                 onMouseOver={this.handleOver2}
@@ -108,7 +116,7 @@ export default class Header extends Component {
             </li>
 
             <li>
-              <Link to="/creating" class="header-nav-mobile">创作 | CREATING</Link>
+              <Link to="/creating" className="header-nav-mobile">创作 | CREATING</Link>
               <Link to="/creating"
                 className={'header-nav-desktop' + this.state.hoverClass3}
                 onMouseOver={this.handleOver3}
@@ -120,7 +128,7 @@ export default class Header extends Component {
             </li>
 
             <li>
-              <Link to="/thoughts" class="header-nav-mobile">杂谈 | THOUGHTS</Link>
+              <Link to="/thoughts" className="header-nav-mobile">杂谈 | THOUGHTS</Link>
               <Link to="/thoughts"
                 className={'header-nav-desktop' + this.state.hoverClass4}
                 onMouseOver={this.handleOver4}
@@ -132,10 +140,22 @@ export default class Header extends Component {
             </li>
 
             <li>
-              <Link to="/about" class="header-nav-mobile">关于 | ABOUT</Link>
-              <Link to="/about"
+              <Link to="/tags" className="header-nav-mobile">标签 | TAGS</Link>
+              <Link to="/tags"
                 className={'header-nav-desktop' + this.state.hoverClass5}
                 onMouseOver={this.handleOver5}
+                onMouseOut={this.handleOut}
+              >
+                标签
+                <div><span>TAGS</span></div>
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/about" className="header-nav-mobile">关于 | ABOUT</Link>
+              <Link to="/about"
+                className={'header-nav-desktop' + this.state.hoverClass6}
+                onMouseOver={this.handleOver6}
                 onMouseOut={this.handleOut}
               >
                 关于
