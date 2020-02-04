@@ -24,8 +24,8 @@ while ($row = $result_get_info->fetch_assoc()) {
     while ($tag = $result_get_tag->fetch_assoc()) {
         array_push($tags, $tag);
     }
-    
-    $row["tag"] = $tags;
+
+    $row["tags"] = $tags;
     array_push($arr, $row);
 }
 
