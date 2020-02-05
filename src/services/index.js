@@ -11,3 +11,7 @@ export const getCategoryList = id => (
     }
   })
 )
+
+export const getTagList = () => (
+  ajax.get('/tags.php')
+)

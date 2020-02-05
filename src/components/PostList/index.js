@@ -10,19 +10,23 @@ class PostList extends PureComponent {
   }
 
   render() {
-    return (
-      this.props.isLoading
-        ? <div>loading...</div>
-        : this.props.fetchError
-          ? <div>fetch list error.</div>
-          : <ul>
-            {
-              this.props.list.map(item => (
-                <PostItem key={item.id} {...item} />
-              ))
-            }
-          </ul>
-    )
+    if (this.props.isLoading) {
+      return <div>loading...</div>
+
+    } else if (this.props.fetchError) {
+      return <div>获取数据失败，请与维护者联系。</div>
+      
+    } else {
+      return (
+        <ul>
+          {
+            this.props.list.map(item => (
+              <PostItem key={item.id} {...item} />
+            ))
+          }
+        </ul>
+      )
+    }
   }
 }
 

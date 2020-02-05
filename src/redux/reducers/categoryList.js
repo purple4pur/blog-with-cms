@@ -15,6 +15,7 @@ export default (state = initState, action) => {
       }
     case actionTypes.FETCH_LIST_SUCCESS:
       return {
+        ...state,
         isLoading: false,
         fetchError: false,
         list: action.payload.data

@@ -4,7 +4,7 @@ export default class TagItem extends PureComponent {
   render() {
     return (
       <li>
-        tagitem
+        <span>{this.props.name}</span>
       </li>
     )
   }
