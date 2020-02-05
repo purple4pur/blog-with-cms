@@ -133,10 +133,10 @@ header {
     background   : #8e44ad;
     border-radius: 4px;
     position     : absolute;
-    top          : -50px;
+    top          : -34px;
     left         : 50%;
     transform    : translate(-50%, -50%);
-    transition   : .3s;
+    transition   : .2s;
   }
 
   .header-nav-desktop div span {

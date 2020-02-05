@@ -2,19 +2,22 @@ import React, { PureComponent as Component } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 
 import './Blog.css'
+import { Header, Footer } from 'components'
 import {
   Home,
   Coding,
   Creating,
   Thoughts,
   About,
-  Tags
+  Tags,
+  NotFound
 } from 'views'
 
 export default class Blog extends Component {
   render() {
     return (
       <>
+        <Header />
         <Switch>
           <Route component={Home} path="/" exact />
           <Route component={Coding} path="/coding" exact />
@@ -22,8 +25,10 @@ export default class Blog extends Component {
           <Route component={Thoughts} path="/thoughts" exact />
           <Route component={About} path="/about" exact />
           <Route component={Tags} path="/tags" exact />
-          <Redirect to="/" />
+          <Route component={NotFound} path="/404" exact />
+          <Redirect to="/404" />
         </Switch>
+        <Footer />
       </>
     )
   }

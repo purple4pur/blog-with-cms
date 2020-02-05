@@ -6,7 +6,7 @@
 
 开源的个人博客，线上地址 [www.purple4pur.com](https://purple4pur.com)。
 
-搭建这个博客得到了舍友 [ketchuppp](https://github.com/ketchuppp) 的启发（ballball大佬带带我），看他在 [他的博客](https://ketchuppp.xyz/) 上记录和分享内容我觉得很赞。于是寒假期间学习了一下整个流程，纯手撸了一个博客，当然现在还在逐步搭建中，希望上学前能有一个比较完整的面貌。
+搭建这个博客得到了舍友 [ketchuppp](https://github.com/ketchuppp) 的启发（ballball大佬带带我），看他在 [他的博客](https://ketchuppp.xyz/) 上记录和分享内容我觉得很赞。于是寒假期间瞎学习了一波，打算纯手撸一个博客，当然现在还在逐步搭建中，希望上学前能有一个比较完整的面貌。
 
 本 repo 是从一个私人仓库复制过来的，所以有一些初始进度，以后代码会直接提交到这里。
 
@@ -29,7 +29,7 @@
   - 服务器
     - [php](https://www.php.net/)：需要的功能不复杂，再说了别的我也不会……
   - 数据库
-    - [mariaDB](https://mariadb.org/)：mySQL 的一个变体
+    - [MariaDB](https://mariadb.org/)：MySQL 的一个变体
 
 当然由于博客还在搭建中，可能用的技术还会更改，我会及时更新的。
 
@@ -43,7 +43,7 @@
 
 - [ ] 优化页面布局
 - [ ] markdown 渲染出 html
-- [ ] CMS 登陆检查
+- [ ] CMS 登陆及检查
 - [ ] CMS 提交新文章
 - [ ] ...
 
@@ -53,6 +53,7 @@
 - [x] 全部改用 inner join 查询数据库
 - [x] 增加标签栏
 - [x] 显示标签栏内容
+- [x] 404 页面
 
 ## 本地搭建
 
@@ -75,7 +76,7 @@
 
 ### 注意
 
-1. 后端的事自己用本地服务器解决。
+1. 将 `/src/services/index.js` 内的信息更改为你自己的后端响应页面。
 2. 将 `/public/php` 目录下的 `dbConst.example.php` 重命名为 `dbConst.php`，并修改为你自己的数据库信息。
 3. 后端页面请根据自己数据库的结构进行修改。
 
