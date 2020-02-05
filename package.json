@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "A blog built with React, php and mariaDB.",
   "private": true,
-  "homepage": ".",
+  "homepage": "/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build"
