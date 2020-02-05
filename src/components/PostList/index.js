@@ -6,7 +6,12 @@ import PostItem from './PostItem'
 
 class PostList extends PureComponent {
   componentDidMount() {
-    this.props.fetchList(this.props.categoryID)
+    if (this.props.categoryID) {
+      this.props.fetchList(this.props.categoryID, null)
+      
+    } else {
+      this.props.fetchList(null, this.props.tagID)
+    }
   }
 
   render() {
@@ -15,7 +20,7 @@ class PostList extends PureComponent {
 
     } else if (this.props.fetchError) {
       return <div>获取数据失败，请与维护者联系。</div>
-      
+
     } else {
       return (
         <ul>
@@ -31,9 +36,9 @@ class PostList extends PureComponent {
 }
 
 const mapToProps = state => ({
-  isLoading: state.categoryList.isLoading,
-  fetchError: state.categoryList.fetchError,
-  list: state.categoryList.list
+  isLoading: state.postList.isLoading,
+  fetchError: state.postList.fetchError,
+  list: state.postList.list
 })
 
 export default connect(

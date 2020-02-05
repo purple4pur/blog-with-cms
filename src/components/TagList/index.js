@@ -15,7 +15,7 @@ class TagList extends PureComponent {
 
     } else if (this.props.fetchError) {
       return <div>获取数据失败，请与维护者联系。</div>
-      
+
     } else {
       return (
         <ul>
@@ -31,8 +31,8 @@ class TagList extends PureComponent {
 }
 
 const mapToProps = state => ({
-  isLoading: state.categoryList.isLoading,
-  fetchError: state.categoryList.fetchError,
+  isLoading: state.tagList.isLoading,
+  fetchError: state.tagList.fetchError,
   tags: state.tagList.tags
 })
 

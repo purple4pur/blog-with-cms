@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
 
-import categoryList from './categoryList'
+import postList from './postList'
 import tagList from './tagList'
 
 export default combineReducers({
-  categoryList,
+  postList,
   tagList
 })

@@ -1,13 +1,14 @@
 import React, { PureComponent } from 'react'
 
-import { TagList } from 'components'
+import { TagList, PostList } from 'components'
 
 export default class Tags extends PureComponent {
   render() {
-    return (
-      <>
-        <TagList />
-      </>
-    )
+    if (this.props.match.params.tagID) {
+      return <PostList tagID={this.props.match.params.tagID} />
+
+    } else {
+      return <TagList />
+    }
   }
 }

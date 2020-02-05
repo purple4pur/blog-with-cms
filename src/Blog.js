@@ -23,8 +23,9 @@ export default class Blog extends Component {
           <Route component={Coding} path="/coding" exact />
           <Route component={Creating} path="/creating" exact />
           <Route component={Thoughts} path="/thoughts" exact />
-          <Route component={About} path="/about" exact />
           <Route component={Tags} path="/tags" exact />
+          <Route component={Tags} path="/tags/:tagID" exact />
+          <Route component={About} path="/about" exact />
           <Route component={NotFound} path="/404" exact />
           <Redirect to="/404" />
         </Switch>

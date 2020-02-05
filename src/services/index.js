@@ -15,3 +15,11 @@ export const getCategoryList = id => (
 export const getTagList = () => (
   ajax.get('/tags.php')
 )
+
+export const getTagPost = id => (
+  ajax.get('/tags.php', {
+    params: {
+      tagID: id
+    }
+  })
+)

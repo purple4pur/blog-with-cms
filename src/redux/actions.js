@@ -1,6 +1,6 @@
 import actionTypes from './actionTypes'
 
-import { getCategoryList, getTagList } from 'services'
+import { getCategoryList, getTagList, getTagPost } from 'services'
 
 const startFetchList = () => ({
   type: actionTypes.START_FETCH_LIST
@@ -15,21 +15,38 @@ const fetchListfailed = () => ({
   type: actionTypes.FETCH_LIST_FAILED
 })
 
-export const fetchList = categoryID => dispatch => {
+export const fetchList = (categoryID, tagID) => dispatch => {
   dispatch(startFetchList())
-  getCategoryList(categoryID)
-    .then(resp => {
-      if (resp.status === 200) {
-        dispatch(fetchListSuccess(resp.data))
-      } else {
-        console.log('fetch list error: status = ' + resp.status)
+  if (categoryID) {
+    getCategoryList(categoryID)
+      .then(resp => {
+        if (resp.status === 200) {
+          dispatch(fetchListSuccess(resp.data))
+        } else {
+          console.log('fetch list error: status = ' + resp.status)
+          dispatch(fetchListfailed())
+        }
+      })
+      .catch(err => {
+        console.log(err)
         dispatch(fetchListfailed())
-      }
-    })
-    .catch(err => {
-      console.log(err)
-      dispatch(fetchListfailed())
-    })
+      })
+
+  } else {
+    getTagPost(tagID)
+      .then(resp => {
+        if (resp.status === 200) {
+          dispatch(fetchListSuccess(resp.data))
+        } else {
+          console.log('fetch list error: status = ' + resp.status)
+          dispatch(fetchListfailed())
+        }
+      })
+      .catch(err => {
+        console.log(err)
+        dispatch(fetchListfailed())
+      })
+  }
 }
 
 const startFetchTags = () => ({
