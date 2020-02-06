@@ -65,14 +65,16 @@
    ```
 2. 安装依赖库
    ```
-   npm i -S react react-dom react-scripts react-router-dom
-   npm i -S redux redux-thunk react-redux
-   npm i -S axios react-markdown
+   npm install
+   ```
+3. 启动调试
+   ```
+   npm start
    ```
 
 ### 可用脚本
 
-- `npm run start`：启用本地预览或 debug，默认地址 [http://localhost:3000/](http://localhost:3000/)。
+- `npm start`：启用本地预览或 debug，默认地址 [http://localhost:3000/](http://localhost:3000/)。
 - `npm run build`：生产环境打包，打包结果位于 `/build` 目录下。
 
 ### 注意
