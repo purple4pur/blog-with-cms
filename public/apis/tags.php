@@ -1,7 +1,7 @@
 <?php
-require_once './dbConst.php';
+require_once './consts/dbConst.php';
 
-header('Access-Control-Allow-Origin:*');
+header('Access-Control-Allow-Origin: *');
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {

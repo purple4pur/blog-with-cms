@@ -1,5 +1,5 @@
 <?php
-require_once './dbConst.php';
+require_once './consts/dbConst.php';
 
 header('Access-Control-Allow-Origin:*');
 

@@ -10,7 +10,8 @@ import {
   Thoughts,
   About,
   Tags,
-  NotFound
+  NotFound,
+  Admin
 } from 'views'
 
 export default class Blog extends Component {
@@ -27,6 +28,7 @@ export default class Blog extends Component {
           <Route component={Tags} path="/tags/:tagID" exact />
           <Route component={About} path="/about" exact />
           <Route component={NotFound} path="/404" exact />
+          <Route component={Admin} path="/admin" exact />
           <Redirect to="/404" />
         </Switch>
         <Footer />

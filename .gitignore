@@ -8,3 +8,6 @@
 
 # database consts
 dbConst.php
+
+# JWT private key
+privateKey.php
