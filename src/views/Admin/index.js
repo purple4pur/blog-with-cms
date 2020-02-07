@@ -9,7 +9,8 @@ export default class Admin extends PureComponent {
     this.state = {
       user: 'purple4pur',
       pwd: '123456',
-      isLoggedIn: false
+      isLoggedIn: false,
+      activeUser: ''
     }
   }
 
@@ -21,8 +22,8 @@ export default class Admin extends PureComponent {
     if (this.state.isLoggedIn) {
       return (
         <>
-          <div>已经登陆</div>
-          <input type="button" value="移除token" onClick={this.handleRmToken} />
+          <span>已经登陆为：{this.state.activeUser}</span>
+          <input type="button" value="退出" onClick={this.handleRmToken} />
         </>
       )
     } else {
@@ -42,15 +43,20 @@ export default class Admin extends PureComponent {
   }
 
   checkToken = () => {
-    if (localStorage.getItem('purple4pur/blog')) {
-      console.log('token is stored.')
-      this.setState({
-        isLoggedIn: true
-      })
+    if (localStorage.getItem('purple4pur/blog:JWT')) {
+      verifyLogin(undefined, undefined, localStorage.getItem('purple4pur/blog:JWT'))
+        .then(resp => {
+          if (resp.data.activeUser) {
+            this.setState({
+              isLoggedIn: true,
+              activeUser: resp.data.activeUser
+            })
+          }
+        })
     } else {
-      console.log('no token.')
       this.setState({
-        isLoggedIn: false
+        isLoggedIn: false,
+        activeUser: ''
       })
     }
   }
@@ -69,19 +75,17 @@ export default class Admin extends PureComponent {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    verifyLogin(this.state.user, this.state.pwd, 'send-from-client')
+    verifyLogin(this.state.user, this.state.pwd, undefined)
       .then(resp => {
-        console.log(resp)
-        // if (resp.data.charAt(0) !== '!') {
-        //   console.log('logged in.')
-        //   localStorage.setItem('purple4pur/blog', resp.data)
-        //   console.log('get token.')
-        //   this.setState({
-        //     isLoggedIn: true
-        //   })
-        // } else {
-        //   console.log(resp.data)
-        // }
+        if (resp.data === 'Verified.') {
+          localStorage.setItem('purple4pur/blog:JWT', resp.headers.authorization)
+          this.setState({
+            isLoggedIn: true,
+            activeUser: this.state.user
+          })
+        } else {
+          console.log(resp.data)
+        }
       })
       .catch(err => {
         console.log(err)
@@ -97,7 +101,7 @@ export default class Admin extends PureComponent {
   }
 
   handleRmToken = () => {
-    localStorage.removeItem('purple4pur/blog')
+    localStorage.removeItem('purple4pur/blog:JWT')
     this.checkToken()
   }
 }

@@ -7,10 +7,10 @@ import PostItem from './PostItem'
 class PostList extends PureComponent {
   componentDidMount() {
     if (this.props.categoryID) {
-      this.props.fetchList(this.props.categoryID, null)
+      this.props.fetchList(this.props.categoryID, undefined)
       
     } else {
-      this.props.fetchList(null, this.props.tagID)
+      this.props.fetchList(undefined, this.props.tagID)
     }
   }
 
