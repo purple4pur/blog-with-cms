@@ -1,7 +1,7 @@
 <?php
 require_once './consts/dbConst.php';
 
-header('Access-Control-Allow-Origin:*');
+header('Access-Control-Allow-Origin: *');
 
 $categoryID = isset($_GET["categoryID"]) ? $_GET["categoryID"] : "0";
 
@@ -15,11 +15,11 @@ $sql_get_info_post = " AND post_info.post_id=post.id AND post_info.author_id=aut
 $sql_get_tag_pre = "SELECT tag.id, tag.name FROM post_tag, tag WHERE post_tag.post_id=";
 $sql_get_tag_post = " AND tag.id=post_tag.tag_id";
 
-$result_get_info = $conn->query($sql_get_info_pre . $categoryID . $sql_get_info_post);
+$result_get_info = $conn->query($sql_get_info_pre . '"' . $categoryID . '"' . $sql_get_info_post);
 
 $arr = [];
 while ($row = $result_get_info->fetch_assoc()) {
-    $result_get_tag = $conn->query($sql_get_tag_pre . $row["id"] . $sql_get_tag_post);
+    $result_get_tag = $conn->query($sql_get_tag_pre . '"' . $row["id"] . '"' . $sql_get_tag_post);
     $tags = [];
     while ($tag = $result_get_tag->fetch_assoc()) {
         array_push($tags, $tag);

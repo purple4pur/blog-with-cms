@@ -19,9 +19,9 @@ $arr = [];
 if (isset($_GET["tagID"])) {
     $tagID = $_GET["tagID"];
 
-    $result_get_info = $conn->query($sql_get_info_pre . $tagID . $sql_get_info_post);
+    $result_get_info = $conn->query($sql_get_info_pre . '"' . $tagID . '"' . $sql_get_info_post);
     while ($row = $result_get_info->fetch_assoc()) {
-        $result_get_tag = $conn->query($sql_get_tag_pre . $row["id"] . $sql_get_tag_post);
+        $result_get_tag = $conn->query($sql_get_tag_pre . '"' . $row["id"] . '"' . $sql_get_tag_post);
         $tags = [];
         while ($tag = $result_get_tag->fetch_assoc()) {
             array_push($tags, $tag);

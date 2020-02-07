@@ -29,10 +29,10 @@ export default class Admin extends PureComponent {
       return (
         <form>
           <div>
-            <input type="text" name="username" placeholder="username" value={this.state.user} onChange={this.handleChgUser} />
+            <input type="text" name="username" placeholder="username" value={this.state.user} autoComplete="off" onChange={this.handleChgUser} />
           </div>
           <div>
-            <input type="password" name="password" placeholder="********" value={this.state.pwd} onChange={this.handleChgPwd} />
+            <input type="password" name="password" placeholder="********" value={this.state.pwd} autoComplete="off" onChange={this.handleChgPwd} />
           </div>
           <input type="submit" value="登陆" onClick={this.handleSubmit} />
           <input type="reset" value="重置" onClick={this.handleReset} />
@@ -69,18 +69,19 @@ export default class Admin extends PureComponent {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    verifyLogin(this.state.user, this.state.pwd)
+    verifyLogin(this.state.user, this.state.pwd, 'send-from-client')
       .then(resp => {
-        if (resp.data.charAt(0) !== '!') {
-          console.log('logged in.')
-          console.log('get token.')
-          localStorage.setItem('purple4pur/blog', resp.data)
-          this.setState({
-            isLoggedIn: true
-          })
-        } else {
-          console.log(resp.data)
-        }
+        console.log(resp)
+        // if (resp.data.charAt(0) !== '!') {
+        //   console.log('logged in.')
+        //   localStorage.setItem('purple4pur/blog', resp.data)
+        //   console.log('get token.')
+        //   this.setState({
+        //     isLoggedIn: true
+        //   })
+        // } else {
+        //   console.log(resp.data)
+        // }
       })
       .catch(err => {
         console.log(err)

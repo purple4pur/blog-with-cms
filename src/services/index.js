@@ -4,7 +4,6 @@ const ajax = axios.create({
   baseURL: 'https://purple4pur.com/apis'
   // baseURL: 'http://localhost/php' // debug
 })
-ajax.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 export const getCategoryList = id => (
   ajax.get('/categories.php', {
@@ -26,9 +25,13 @@ export const getTagPost = id => (
   })
 )
 
-export const verifyLogin = (user, pwd) => (
+export const verifyLogin = (user, pwd, token) => (
   ajax.post('/login.php', {
     username: user,
     password: pwd
+  }, {
+    headers: {
+      Authorization: token
+    }
   })
 )

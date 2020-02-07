@@ -1,14 +1,15 @@
 <?php
 require_once './consts/dbConst.php';
-require_once './consts/privateKey.php';
 require_once './vendor/autoload.php';
+require_once './consts/privateKey.php';
 
 use \Firebase\JWT\JWT;
 
 // header('Access-Control-Allow-Origin: *');
 header('Access-Control-Request-Method: POST');
-header('Access-Control-Allow-Headers: Content-Type');
+header('Access-Control-Allow-Headers: Content-Type, Authorization');
 header('Content-Type: application/x-www-form-urlencoded;');
+header('Access-Control-Expose-Headers: Authorization');
 
 $_POST = json_decode(file_get_contents("php://input"), true);
 
@@ -27,7 +28,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql_get_admin_pre = "SELECT `password` FROM `admin` WHERE `username`=";
+$sql_get_admin_pre = "SELECT password FROM admin WHERE username=";
 $sql_get_admin_post = "";
 
 $result_get_admin = $conn->query($sql_get_admin_pre . '"' . $name . '"' . $sql_get_admin_post);
@@ -51,4 +52,6 @@ $payload = [
 ];
 
 $token = JWT::encode($payload, $privateKey);
-echo $token;
+
+header('Authorization: Bearer ' . $token);
+echo 'Verified.';
