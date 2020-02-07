@@ -5,7 +5,7 @@ require_once './consts/privateKey.php';
 
 use \Firebase\JWT\JWT;
 
-// header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: *');
 header('Access-Control-Request-Method: POST');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
 header('Content-Type: application/x-www-form-urlencoded;');
