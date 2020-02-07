@@ -1,16 +1,16 @@
 import React, { PureComponent } from 'react'
+import { Switch, Route, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-import { verifyLogin } from 'services'
+import { verifyStatus } from 'services'
+import { Login } from 'components'
 
-export default class Admin extends PureComponent {
+class Admin extends PureComponent {
   constructor(props) {
     super(props)
 
     this.state = {
-      user: 'purple4pur',
-      pwd: '123456',
-      isLoggedIn: false,
-      activeUser: ''
+      activeView: this.props.match.params.viewSelector
     }
   }
 
@@ -28,23 +28,17 @@ export default class Admin extends PureComponent {
       )
     } else {
       return (
-        <form>
-          <div>
-            <input type="text" name="username" placeholder="username" value={this.state.user} autoComplete="off" onChange={this.handleChgUser} />
-          </div>
-          <div>
-            <input type="password" name="password" placeholder="********" value={this.state.pwd} autoComplete="off" onChange={this.handleChgPwd} />
-          </div>
-          <input type="submit" value="登陆" onClick={this.handleSubmit} />
-          <input type="reset" value="重置" onClick={this.handleReset} />
-        </form>
+        <Switch>
+          <Route component={Login} path="/admin/login" />
+          <Redirect to="/admin/login" />
+        </Switch>
       )
     }
   }
 
   checkToken = () => {
     if (localStorage.getItem('purple4pur/blog:JWT')) {
-      verifyLogin(undefined, undefined, localStorage.getItem('purple4pur/blog:JWT'))
+      verifyStatus(undefined, undefined, localStorage.getItem('purple4pur/blog:JWT'))
         .then(resp => {
           if (resp.data.activeUser) {
             this.setState({
@@ -61,47 +55,12 @@ export default class Admin extends PureComponent {
     }
   }
 
-  handleChgUser = (e) => {
-    this.setState({
-      user: e.target.value
-    })
-  }
-
-  handleChgPwd = (e) => {
-    this.setState({
-      pwd: e.target.value
-    })
-  }
-
-  handleSubmit = (e) => {
-    e.preventDefault()
-    verifyLogin(this.state.user, this.state.pwd, undefined)
-      .then(resp => {
-        if (resp.data === 'Verified.') {
-          localStorage.setItem('purple4pur/blog:JWT', resp.headers.authorization)
-          this.setState({
-            isLoggedIn: true,
-            activeUser: this.state.user
-          })
-        } else {
-          console.log(resp.data)
-        }
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }
-
-  handleReset = (e) => {
-    e.preventDefault()
-    this.setState({
-      user: '',
-      pwd: ''
-    })
-  }
-
   handleRmToken = () => {
     localStorage.removeItem('purple4pur/blog:JWT')
     this.checkToken()
   }
 }
+
+export default connect(
+
+)(Admin)

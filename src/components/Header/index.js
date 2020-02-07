@@ -16,17 +16,9 @@ export default class Header extends Component {
       hoverClass5: '',
       hoverClass6: ''
     }
-    this.toggleMenu = this.toggleMenu.bind(this)
-    this.handleOver1 = this.handleOver1.bind(this)
-    this.handleOver2 = this.handleOver2.bind(this)
-    this.handleOver3 = this.handleOver3.bind(this)
-    this.handleOver4 = this.handleOver4.bind(this)
-    this.handleOver5 = this.handleOver5.bind(this)
-    this.handleOver6 = this.handleOver6.bind(this)
-    this.handleOut = this.handleOut.bind(this)
   }
 
-  toggleMenu() {
+  toggleMenu = () => {
     if (this.state.navClass === '') {
       this.setState({
         navClass: ' openMenu'
@@ -38,38 +30,38 @@ export default class Header extends Component {
     }
   }
 
-  handleOver1() {
+  handleOver1 = () => {
     this.setState({
       hoverClass1: ' hover'
     })
   }
-  handleOver2() {
+  handleOver2 = () => {
     this.setState({
       hoverClass2: ' hover'
     })
   }
-  handleOver3() {
+  handleOver3 = () => {
     this.setState({
       hoverClass3: ' hover'
     })
   }
-  handleOver4() {
+  handleOver4 = () => {
     this.setState({
       hoverClass4: ' hover'
     })
   }
-  handleOver5() {
+  handleOver5 = () => {
     this.setState({
       hoverClass5: ' hover'
     })
   }
-  handleOver6() {
+  handleOver6 = () => {
     this.setState({
       hoverClass6: ' hover'
     })
   }
 
-  handleOut() {
+  handleOut = () => {
     this.setState({
       hoverClass1: '',
       hoverClass2: '',

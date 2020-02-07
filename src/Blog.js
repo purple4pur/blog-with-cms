@@ -29,6 +29,7 @@ export default class Blog extends Component {
           <Route component={About} path="/about" exact />
           <Route component={NotFound} path="/404" exact />
           <Route component={Admin} path="/admin" exact />
+          <Route component={Admin} path="/admin/:viewSelector" exact />
           <Redirect to="/404" />
         </Switch>
         <Footer />
