@@ -14,7 +14,7 @@
 
 - 前端
   - 框架
-    - [React](https://reactjs.org/)：应该是最流行的前端库了吧
+    - [React](https://reactjs.org/)：流行的前端框架
   - 路由
     - [react-router-dom](https://reacttraining.com/react-router/web)：react 搭配的路由 dom 组件
   - 数据管理
@@ -43,7 +43,6 @@
 
 - [ ] 优化页面布局
 - [ ] markdown 渲染出 html
-- [ ] CMS 登陆及检查
 - [ ] CMS 提交新文章
 - [ ] ...
 
@@ -55,6 +54,7 @@
 - [x] 显示标签栏内容
 - [x] 404 页面
 - [x] 按标签显示文章
+- [x] CMS 登陆及检查（admin 页面）
 
 ## 本地搭建
 
@@ -79,9 +79,10 @@
 
 ### 注意
 
-1. 将 `/src/services/index.js` 内的信息更改为你自己的后端响应页面。
-2. 将 `/public/php` 目录下的 `dbConst.example.php` 重命名为 `dbConst.php`，并修改为你自己的数据库信息。
-3. 后端页面请根据自己数据库的结构进行修改。
+1. 将 `/src/services/index.js` 内的 `baseUrl` 更改为自己的后端响应页面。
+2. 将 `/public/apis/consts` 目录下的 `dbConst.example.php` 重命名为 `dbConst.php`，并修改为自己的数据库信息。
+3. 将 `/public/apis/consts` 目录下的 `privateKey.example.php` 重命名为 `privateKey.php`，并修改为自己用于加密的随机字符串。
+4. 所有 `sql` 语句请根据数据库的结构进行修改。
 
 ## 关于 [CHANGELOG](https://github.com/purple4pur/blog-with-cms/blob/master/CHANGELOG.md)
 
