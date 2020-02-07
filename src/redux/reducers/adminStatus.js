@@ -42,6 +42,17 @@ export default (state = initState, action) => {
         ...state,
         isLoading: false
       }
+    case actionTypes.START_REMOVE_TOKEN:
+      return {
+        ...state,
+        isLoading: true
+      }
+    case actionTypes.REMOVE_TOKEN_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        activeUser: ''
+      }
     default:
       return state
   }

@@ -2,65 +2,55 @@ import React, { PureComponent } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { verifyStatus } from 'services'
-import { Login } from 'components'
+import { verifyToken, removeToken } from 'redux/actions'
+import { Login } from 'views'
 
 class Admin extends PureComponent {
   constructor(props) {
     super(props)
 
     this.state = {
-      activeView: this.props.match.params.viewSelector
+      activeView: this.props.match.params.viewSelector,
+      isReadyToRedirect: false
     }
   }
 
   componentDidMount() {
-    this.checkToken()
+    this.props.verifyToken()
+    this.setState({ isReadyToRedirect: true })
   }
 
   render() {
-    if (this.state.isLoggedIn) {
+    if (this.state.activeView === 'login') {
+      return <Route component={Login} path="/admin/login" />
+
+    } else if (this.props.isLoading || !this.state.isReadyToRedirect) {
+      return <div>loading...</div>
+
+    } else if (this.props.isLoggedIn) {
       return (
         <>
-          <span>已经登陆为：{this.state.activeUser}</span>
+          <span>已经登陆为：{this.props.activeUser}</span>
           <input type="button" value="退出" onClick={this.handleRmToken} />
         </>
       )
-    } else {
-      return (
-        <Switch>
-          <Route component={Login} path="/admin/login" />
-          <Redirect to="/admin/login" />
-        </Switch>
-      )
-    }
-  }
 
-  checkToken = () => {
-    if (localStorage.getItem('purple4pur/blog:JWT')) {
-      verifyStatus(undefined, undefined, localStorage.getItem('purple4pur/blog:JWT'))
-        .then(resp => {
-          if (resp.data.activeUser) {
-            this.setState({
-              isLoggedIn: true,
-              activeUser: resp.data.activeUser
-            })
-          }
-        })
     } else {
-      this.setState({
-        isLoggedIn: false,
-        activeUser: ''
-      })
+      return <Redirect to="/admin/login" />
     }
   }
 
   handleRmToken = () => {
-    localStorage.removeItem('purple4pur/blog:JWT')
-    this.checkToken()
+    this.props.removeToken()
   }
 }
 
-export default connect(
+const mapToProps = state => ({
+  isLoading: state.adminStatus.isLoading,
+  isLoggedIn: state.adminStatus.isLoggedIn,
+  activeUser: state.adminStatus.activeUser
+})
 
+export default connect(
+  mapToProps, { verifyToken, removeToken }
 )(Admin)

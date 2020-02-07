@@ -15,10 +15,11 @@ class Login extends PureComponent {
   }
 
   render() {
-    return (
-      this.props.isLoggedIn
-        ? <Redirect to="/admin" />
-        : <form>
+    if (this.props.isLoading) {
+      return <div>loading...</div>
+    } else if (!this.props.isLoggedIn) {
+      return (
+        <form>
           <div>
             <span>用户名：</span>
             <input type="text" name="username" placeholder="username" value={this.state.user} autoComplete="off" onChange={this.handleChgUser} />
@@ -30,7 +31,10 @@ class Login extends PureComponent {
           <input type="submit" value="登陆" onClick={this.handleSubmit} />
           <input type="reset" value="重置" onClick={this.handleReset} />
         </form>
-    )
+      )
+    } else {
+      return <Redirect to="/admin" />
+    }
   }
 
   handleChgUser = (e) => {
@@ -61,6 +65,7 @@ class Login extends PureComponent {
 }
 
 const mapToProps = state => ({
+  isLoading: state.adminStatus.isLoading,
   isLoggedIn: state.adminStatus.isLoggedIn
 })
 

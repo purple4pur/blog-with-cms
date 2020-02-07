@@ -144,3 +144,22 @@ export const verifyLogin = (user, pwd) => dispatch => {
       dispatch(verifyLoginFailed())
     })
 }
+
+const startRemoveToken = () => ({
+  type: actionTypes.START_REMOVE_TOKEN
+})
+
+const removeTokenSuccess = () => ({
+  type: actionTypes.REMOVE_TOKEN_SUCCESS
+})
+
+// const removeTokenFailed = () => ({
+//   type: actionTypes.REMOVE_TOKEN_FAILED
+// })
+
+export const removeToken = () => dispatch => {
+  dispatch(startRemoveToken())
+  localStorage.removeItem('purple4pur/blog:JWT')
+  dispatch(removeTokenSuccess())
+  dispatch(verifyToken())
+}
