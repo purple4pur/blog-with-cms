@@ -50,7 +50,6 @@ class Login extends PureComponent {
   }
 
   handleSubmit = (e) => {
-    console.log('into handleSubmit')
     e.preventDefault()
     this.props.verifyLogin(this.state.user, this.state.pwd)
   }

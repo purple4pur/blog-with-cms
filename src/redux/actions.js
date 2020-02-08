@@ -126,7 +126,6 @@ const verifyLoginFailed = () => ({
 })
 
 export const verifyLogin = (user, pwd) => dispatch => {
-  console.log('into verifyLogin')
   dispatch(startVerifyLogin())
   verifyStatus(user, pwd, undefined)
     .then(resp => {
