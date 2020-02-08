@@ -102,6 +102,7 @@ export const verifyToken = () => dispatch => {
         } else {
           console.log(resp.data)
           dispatch(verifyTokenFailed())
+          dispatch(removeToken())
         }
       })
       .catch(err => {
@@ -129,7 +130,7 @@ export const verifyLogin = (user, pwd) => dispatch => {
   dispatch(startVerifyLogin())
   verifyStatus(user, pwd, undefined)
     .then(resp => {
-      if (resp.data === 'Verified.') {
+      if (resp.data === '') {
         localStorage.setItem('purple4pur/blog:JWT', resp.headers.authorization)
         dispatch(verifyLoginSuccess())
         dispatch(verifyToken())
@@ -152,13 +153,18 @@ const removeTokenSuccess = () => ({
   type: actionTypes.REMOVE_TOKEN_SUCCESS
 })
 
-// const removeTokenFailed = () => ({
-//   type: actionTypes.REMOVE_TOKEN_FAILED
-// })
-
 export const removeToken = () => dispatch => {
   dispatch(startRemoveToken())
   localStorage.removeItem('purple4pur/blog:JWT')
   dispatch(removeTokenSuccess())
   dispatch(verifyToken())
 }
+
+const setErrorMsg = code => ({
+  type: actionTypes.SET_ERROR_MSG,
+  payload: { code }
+})
+
+export const resetErrorMsg = () => ({
+  type: actionTypes.RESET_ERROR_MSG
+})

@@ -7,7 +7,10 @@ $categoryID = isset($_GET["categoryID"]) ? $_GET["categoryID"] : "0";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die(json_encode([
+        "errCode" => 1,
+        "errMsg" => "Error: " . $conn->connect_error,
+    ], JSON_UNESCAPED_UNICODE));
 }
 
 $sql_get_info_pre = "SELECT post_info.post_id AS id, post.time, post.title, post.content, author.name AS author FROM post_info, post, author WHERE post_info.category_id=";

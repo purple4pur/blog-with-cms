@@ -1,8 +1,9 @@
 import React, { PureComponent as Component } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 import './Blog.css'
-import { Header, Footer } from 'components'
+import { Header, Footer, ErrorBox } from 'components'
 import {
   Home,
   Coding,
@@ -14,7 +15,7 @@ import {
   Admin
 } from 'views'
 
-export default class Blog extends Component {
+class Blog extends Component {
   render() {
     return (
       <>
@@ -31,7 +32,18 @@ export default class Blog extends Component {
           <Redirect to="/404" />
         </Switch>
         <Footer />
+        {
+          this.props.isError ? <ErrorBox /> : null
+        }
       </>
     )
   }
 }
+
+const mapToProps = state => ({
+  isError: state.errorMsg.isError
+})
+
+export default connect(
+  mapToProps
+)(Blog)

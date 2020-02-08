@@ -13,12 +13,31 @@ header('Access-Control-Expose-Headers: Authorization');
 
 $_POST = json_decode(file_get_contents("php://input"), true);
 
-if (!isset($_POST["decoratedToken"])) {
-    if (!isset($_POST["username"])) {
-        die("Error: No username");
+if (isset($_POST["decoratedToken"])) {
+    $token = explode(" ", $_POST["decoratedToken"])[1];
+    try {
+        $payload = (array) JWT::decode($token, $privateKey, array('HS256'));
+    } catch (Exception $e) {
+        die(json_encode([
+            "errCode" => 6,
+            "errMsg" => "Error: Unvalid token.",
+        ], JSON_UNESCAPED_UNICODE));
     }
-    if (!isset($_POST["password"])) {
-        die("Error: No password");
+    echo json_encode(["activeUser" => $payload["username"]], JSON_UNESCAPED_UNICODE);
+
+} else {
+    if (!isset($_POST["username"]) || $_POST["username"] === "") {
+        die(json_encode([
+            "errCode" => 2,
+            "errMsg" => "Error: No username.",
+        ], JSON_UNESCAPED_UNICODE));
+    }
+    if (!isset($_POST["password"]) || $_POST["password"] === "") {
+        die(json_encode([
+            "errCode" => 3,
+            "errMsg" => "Error: No password.",
+        ], JSON_UNESCAPED_UNICODE));
+
     }
 
     $name = $_POST["username"];
@@ -26,7 +45,10 @@ if (!isset($_POST["decoratedToken"])) {
 
     $conn = new mysqli($servername, $username, $password, $dbname);
     if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+        die(json_encode([
+            "errCode" => 1,
+            "errMsg" => "Error: " . $conn->connect_error,
+        ], JSON_UNESCAPED_UNICODE));
     }
 
     $sql_get_admin_pre = "SELECT password FROM admin WHERE username=";
@@ -39,30 +61,27 @@ if (!isset($_POST["decoratedToken"])) {
     $conn->close();
 
     if (!isset($savedPwd)) {
-        die("Error: Username not exist.");
+        die(json_encode([
+            "errCode" => 4,
+            "errMsg" => "Error: Username not exist.",
+        ], JSON_UNESCAPED_UNICODE));
     }
     if (!password_verify($passwd, $savedPwd)) {
-        die("Error: Wrong password.");
+        die(json_encode([
+            "errCode" => 5,
+            "errMsg" => "Error: Wrong password.",
+        ], JSON_UNESCAPED_UNICODE));
     }
 
     $payload = [
         "iss" => "https://purple4pur.com",
         "iat" => $_SERVER["REQUEST_TIME"],
-        "exp" => $_SERVER["REQUEST_TIME"] + 600,
+        "exp" => $_SERVER["REQUEST_TIME"] + 10,
         "username" => $name,
     ];
 
     $token = JWT::encode($payload, $privateKey);
 
     header('Authorization: Bearer ' . $token);
-    echo 'Verified.';
-
-} else {
-    $token = explode(" ", $_POST["decoratedToken"])[1];
-    try {
-        $payload = (array) JWT::decode($token, $privateKey, array('HS256'));
-    } catch (Exception $e) {
-        die("Error: Unvalid token.");
-    }
-    echo json_encode(["activeUser" => $payload["username"]], JSON_UNESCAPED_UNICODE);
+    echo "";
 }
