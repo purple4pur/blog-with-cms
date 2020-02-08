@@ -19,7 +19,7 @@ class PostList extends PureComponent {
       return <div>loading...</div>
 
     } else if (this.props.fetchError) {
-      return <div>获取数据失败，请与维护者联系。</div>
+      return null
 
     } else {
       return (

@@ -20,31 +20,39 @@ export const fetchList = (categoryID, tagID) => dispatch => {
   if (categoryID) {
     getCategoryList(categoryID)
       .then(resp => {
-        if (resp.status === 200) {
+        if (resp.data[0].id) {
           dispatch(fetchListSuccess(resp.data))
         } else {
-          console.log('fetch list error: status = ' + resp.status)
+          console.log('Error: ' + resp.data)
           dispatch(fetchListfailed())
+          dispatch(setErrorMsg(99))
         }
       })
       .catch(err => {
         console.log(err)
         dispatch(fetchListfailed())
+        dispatch(setErrorMsg(7))
       })
 
   } else {
     getTagPost(tagID)
       .then(resp => {
-        if (resp.status === 200) {
+        if (resp.data.errCode) {
+          console.log(resp.data.errMsg)
+          dispatch(fetchListfailed())
+          dispatch(setErrorMsg(resp.data.errCode))
+        } else if (resp.data[0].id) {
           dispatch(fetchListSuccess(resp.data))
         } else {
-          console.log('fetch list error: status = ' + resp.status)
+          console.log('Error: ' + resp.data)
           dispatch(fetchListfailed())
+          dispatch(setErrorMsg(99))
         }
       })
       .catch(err => {
         console.log(err)
         dispatch(fetchListfailed())
+        dispatch(setErrorMsg(7))
       })
   }
 }
@@ -66,16 +74,18 @@ export const fetchTags = () => dispatch => {
   dispatch(startFetchTags())
   getTagList()
     .then(resp => {
-      if (resp.status === 200) {
+      if (resp.data[0].id) {
         dispatch(fetchTagsSuccess(resp.data))
       } else {
-        console.log('fetch list error: status = ' + resp.status)
+        console.log('Error: ' + resp.data)
         dispatch(fetchTagsfailed())
+        dispatch(setErrorMsg(99))
       }
     })
     .catch(err => {
       console.log(err)
       dispatch(fetchTagsfailed())
+      dispatch(setErrorMsg(7))
     })
 }
 
@@ -100,7 +110,6 @@ export const verifyToken = () => dispatch => {
         if (resp.data.activeUser) {
           dispatch(verifyTokenSuccess(resp.data.activeUser))
         } else {
-          console.log(resp.data)
           dispatch(verifyTokenFailed())
           dispatch(removeToken())
         }
@@ -108,6 +117,7 @@ export const verifyToken = () => dispatch => {
       .catch(err => {
         console.log(err)
         dispatch(verifyTokenFailed())
+        dispatch(setErrorMsg(7))
       })
   } else {
     dispatch(verifyTokenFailed())
@@ -135,13 +145,15 @@ export const verifyLogin = (user, pwd) => dispatch => {
         dispatch(verifyLoginSuccess())
         dispatch(verifyToken())
       } else {
-        console.log(resp.data)
+        console.log(resp.data.errMsg)
         dispatch(verifyLoginFailed())
+        dispatch(setErrorMsg(resp.data.errCode))
       }
     })
     .catch(err => {
       console.log(err)
       dispatch(verifyLoginFailed())
+      dispatch(setErrorMsg(7))
     })
 }
 

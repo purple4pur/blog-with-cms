@@ -23,6 +23,12 @@ if (isset($_GET["tagID"])) {
     $tagID = $_GET["tagID"];
 
     $result_get_info = $conn->query($sql_get_info_pre . '"' . $tagID . '"' . $sql_get_info_post);
+    if ($result_get_info->num_rows === 0) {
+        die(json_encode([
+            "errCode" => 8,
+            "errMsg" => "Error: No result.",
+        ], JSON_UNESCAPED_UNICODE));
+    }
     while ($row = $result_get_info->fetch_assoc()) {
         $result_get_tag = $conn->query($sql_get_tag_pre . '"' . $row["id"] . '"' . $sql_get_tag_post);
         $tags = [];
