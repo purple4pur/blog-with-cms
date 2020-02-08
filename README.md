@@ -37,7 +37,7 @@
 
 由于我是边学边查边写，所以进度不快也不稳定，还会经常犯错，李姐万岁。
 
-初始进度：完成前端的 header 和 footer，数据库完成设计，服务器页面能正确显示数据。
+初始进度：完成前端的 header 和 footer，数据库完成设计，后端页面能正确显示数据。
 
 待完成：
 
@@ -87,7 +87,11 @@
 
 ## 关于 [CHANGELOG](https://github.com/purple4pur/blog-with-cms/blob/master/CHANGELOG.md)
 
-这里只记录网页上「看得见」的变化，代码变化请查看 [commit message](https://github.com/purple4pur/blog-with-cms/commits/master)。
+此文档只记录网页上「看得见」的变化，详细代码变化请查看 [commit message](https://github.com/purple4pur/blog-with-cms/commits/master)。
+
+## 关于 [ISSUELOG](https://github.com/purple4pur/blog-with-cms/blob/master/ISSUELOG.md)
+
+此文档记录开发过程中「已解决」的问题，未解决的问题可参看 [Issues](https://github.com/purple4pur/blog-with-cms/issues)。
 
 ## 交流
 
