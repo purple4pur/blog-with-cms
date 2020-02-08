@@ -3,6 +3,9 @@
   padding   : 14px 24px;
   color     : #c0392b;
   background: #f6e58d;
+  position  : fixed;
+  bottom    : 0;
+  z-index   : 4;
 }
 
 .error-title {
@@ -30,6 +33,7 @@
   border-radius: 4px;
   background   : none;
   right        : 4px;
+  outline      : none;
   cursor       : pointer;
   transition   : .2s;
 }
@@ -45,8 +49,25 @@
 
 .error-msgbox p a {
   margin-left  : 8px;
-  font-size    : 14px;
+  font-size    : 12px;
   color        : #c0392b;
   border-bottom: #c0392b solid 1px;
   cursor       : pointer;
+}
+
+@media only screen and (min-width: 600px) {
+  /* for tablets and desktops */
+
+  .error-msgbox {
+    width  : 280px;
+    padding: 10px 18px;
+    border : #c0392b solid 2px;
+    left   : 20px;
+    bottom : 20px;
+    z-index: 100;
+  }
+
+  .error-title button {
+    right: 0;
+  }
 }
