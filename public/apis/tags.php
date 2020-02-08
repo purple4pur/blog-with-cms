@@ -42,7 +42,7 @@ if (isset($_GET["tagID"])) {
 
 } else {
     $result_get_all_tag = $conn->query($sql_get_all_tag);
-    if ($result_get_info->num_rows === 0) {
+    if ($result_get_all_tag->num_rows === 0) {
         die(json_encode([
             "errCode" => 8,
             "errMsg" => "Error: No result.",
