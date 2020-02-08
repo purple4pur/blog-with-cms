@@ -10,7 +10,9 @@ class ErrorBox extends PureComponent {
       <div className="error-msgbox">
         <h3 className="error-title">
           <span>发生错误</span>
-          <i className="fas fa-times" onClick={this.handleClick}></i>
+          <button onClick={this.handleClick}>
+            <i className="fas fa-times"></i>
+          </button>
         </h3>
         <p>{this.props.errMsg}</p>
         <p>
