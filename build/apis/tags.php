@@ -42,7 +42,12 @@ if (isset($_GET["tagID"])) {
 
 } else {
     $result_get_all_tag = $conn->query($sql_get_all_tag);
-
+    if ($result_get_info->num_rows === 0) {
+        die(json_encode([
+            "errCode" => 8,
+            "errMsg" => "Error: No result.",
+        ], JSON_UNESCAPED_UNICODE));
+    }
     while ($row = $result_get_all_tag->fetch_assoc()) {
         array_push($arr, $row);
     }

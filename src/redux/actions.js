@@ -11,7 +11,7 @@ const fetchListSuccess = data => ({
   payload: { data }
 })
 
-const fetchListfailed = () => ({
+const fetchListFailed = () => ({
   type: actionTypes.FETCH_LIST_FAILED
 })
 
@@ -20,17 +20,21 @@ export const fetchList = (categoryID, tagID) => dispatch => {
   if (categoryID) {
     getCategoryList(categoryID)
       .then(resp => {
-        if (resp.data[0].id) {
+        if (resp.data.errCode) {
+          console.log(resp.data.errMsg)
+          dispatch(fetchListFailed())
+          dispatch(setErrorMsg(resp.data.errCode))
+        } else if (resp.data[0].id) {
           dispatch(fetchListSuccess(resp.data))
         } else {
           console.log('Error: ' + resp.data)
-          dispatch(fetchListfailed())
+          dispatch(fetchListFailed())
           dispatch(setErrorMsg(99))
         }
       })
       .catch(err => {
         console.log(err)
-        dispatch(fetchListfailed())
+        dispatch(fetchListFailed())
         dispatch(setErrorMsg(7))
       })
 
@@ -39,19 +43,19 @@ export const fetchList = (categoryID, tagID) => dispatch => {
       .then(resp => {
         if (resp.data.errCode) {
           console.log(resp.data.errMsg)
-          dispatch(fetchListfailed())
+          dispatch(fetchListFailed())
           dispatch(setErrorMsg(resp.data.errCode))
         } else if (resp.data[0].id) {
           dispatch(fetchListSuccess(resp.data))
         } else {
           console.log('Error: ' + resp.data)
-          dispatch(fetchListfailed())
+          dispatch(fetchListFailed())
           dispatch(setErrorMsg(99))
         }
       })
       .catch(err => {
         console.log(err)
-        dispatch(fetchListfailed())
+        dispatch(fetchListFailed())
         dispatch(setErrorMsg(7))
       })
   }
@@ -66,7 +70,7 @@ const fetchTagsSuccess = data => ({
   payload: { data }
 })
 
-const fetchTagsfailed = () => ({
+const fetchTagsFailed = () => ({
   type: actionTypes.FETCH_TAGS_FAILED
 })
 
@@ -78,13 +82,13 @@ export const fetchTags = () => dispatch => {
         dispatch(fetchTagsSuccess(resp.data))
       } else {
         console.log('Error: ' + resp.data)
-        dispatch(fetchTagsfailed())
+        dispatch(fetchTagsFailed())
         dispatch(setErrorMsg(99))
       }
     })
     .catch(err => {
       console.log(err)
-      dispatch(fetchTagsfailed())
+      dispatch(fetchTagsFailed())
       dispatch(setErrorMsg(7))
     })
 }

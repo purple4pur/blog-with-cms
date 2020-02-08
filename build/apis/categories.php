@@ -19,6 +19,12 @@ $sql_get_tag_pre = "SELECT tag.id, tag.name FROM post_tag, tag WHERE post_tag.po
 $sql_get_tag_post = " AND tag.id=post_tag.tag_id";
 
 $result_get_info = $conn->query($sql_get_info_pre . '"' . $categoryID . '"' . $sql_get_info_post);
+if ($result_get_info->num_rows === 0) {
+    die(json_encode([
+        "errCode" => 8,
+        "errMsg" => "Error: No result.",
+    ], JSON_UNESCAPED_UNICODE));
+}
 
 $arr = [];
 while ($row = $result_get_info->fetch_assoc()) {
