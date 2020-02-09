@@ -98,7 +98,7 @@ class Login extends PureComponent {
 
   handleReset = (e) => {
     e.preventDefault()
-    this.setState({ user: '', pwd: '' })
+    this.setState({ user: '', pwd: '', focus1: false, focus2: false })
   }
 }
 
