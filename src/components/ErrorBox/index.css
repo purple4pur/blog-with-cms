@@ -35,7 +35,7 @@
   right        : 4px;
   outline      : none;
   cursor       : pointer;
-  transition   : .2s;
+  transition   : .3s;
 }
 
 .error-title button:hover {

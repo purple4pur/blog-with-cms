@@ -1,10 +1,10 @@
-import React, { PureComponent as Component } from 'react'
+import React, { PureComponent } from 'react'
 import { NavLink as Link } from 'react-router-dom'
 
 import './index.css'
 import logo from './logo.ico'
 
-export default class Header extends Component {
+export default class Header extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {

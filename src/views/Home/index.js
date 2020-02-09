@@ -1,10 +1,10 @@
-import React, { PureComponent as Component } from 'react'
+import React, { PureComponent } from 'react'
 
-export default class Home extends Component {
+export default class Home extends PureComponent {
   render() {
     return (
       <>
-        <h1>这里是首页。Coming soon...</h1>
+        <h1>首页</h1>
       </>
     )
   }

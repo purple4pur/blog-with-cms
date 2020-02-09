@@ -8,7 +8,7 @@ export default class About extends PureComponent {
   render() {
     return (
       <>
-        <h1>这里是关于。Coming soon.</h1>
+        <h1>关于</h1>
       </>
     )
   }

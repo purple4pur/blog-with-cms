@@ -1,0 +1,26 @@
+.notfound-box {
+  height     : Calc(100vh - 160px);
+  padding-top: Calc(40vh - 80px);
+  text-align : center;
+}
+
+.notfound-box h1 {
+  font-size: 50px;
+}
+
+.notfound-box p {
+  font-size : 20px;
+  margin-top: 8px;
+}
+
+.notfound-box p a {
+  margin-left   : 4px;
+  padding-bottom: 1px;
+  color         : #2c3e50;
+  border-bottom : #95a5a6 solid 1.4px;
+  transition    : .3s;
+}
+
+.notfound-box p a:hover {
+  color: #95a5a6;
+}

@@ -1,9 +1,9 @@
-import React, { PureComponent as Component } from 'react'
+import React, { PureComponent } from 'react'
 import { Link } from 'react-router-dom'
 
 import './index.css'
 
-export default class Footer extends Component {
+export default class Footer extends PureComponent {
   render() {
     return (
       <footer>

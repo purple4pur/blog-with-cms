@@ -1,4 +1,7 @@
 import React, { PureComponent } from 'react'
+import { Link } from 'react-router-dom'
+
+import './index.css'
 
 export default class NotFound extends PureComponent {
   componentDidMount() {
@@ -7,8 +10,10 @@ export default class NotFound extends PureComponent {
 
   render() {
     return (
-      <div>
-        404. 未找到此页面。
+      <div className="notfound-box">
+        <h1>404</h1>
+        <p>莫欺我没有写这一页</p>
+        <p>还不速速<Link to="/">返回首页</Link></p>
       </div>
     )
   }

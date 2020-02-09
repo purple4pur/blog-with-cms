@@ -10,7 +10,6 @@ export default class Coding extends PureComponent {
   render() {
     return (
       <>
-        <h1>这里是代码。Coming soon.</h1>
         <PostList categoryID={1} />
       </>
     )
