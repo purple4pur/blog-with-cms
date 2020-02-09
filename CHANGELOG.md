@@ -2,6 +2,10 @@
 
 > 此文档只记录网页上「看得见」的变化，代码变化请查看 [commit message](https://github.com/purple4pur/blog-with-cms/commits/master)。
 
+### 2020 / 02 / 09
+
+`+` 网页标题显示当前位置
+
 ### 2020 / 02 / 08
 
 `+` footer 增加显式的 CMS 入口<br />

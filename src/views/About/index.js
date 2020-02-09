@@ -1,6 +1,10 @@
-import React, { PureComponent as Component } from 'react'
+import React, { PureComponent } from 'react'
 
-export default class About extends Component {
+export default class About extends PureComponent {
+  componentDidMount() {
+    document.title = "关于 | Purple4pur's Blog"
+  }
+
   render() {
     return (
       <>

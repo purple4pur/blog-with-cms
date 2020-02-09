@@ -16,6 +16,7 @@ class Admin extends PureComponent {
   }
 
   componentDidMount() {
+    document.title = (this.state.activeView ? this.state.activeView + ' - ' : '') + "CMS | Purple4pur's Blog"
     this.props.verifyToken()
     this.setState({ isReadyToRedirect: true })
   }

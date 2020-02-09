@@ -3,6 +3,10 @@ import React, { PureComponent as Component } from 'react'
 import { PostList } from 'components'
 
 export default class Creating extends Component {
+  componentDidMount() {
+    document.title = "创作 | Purple4pur's Blog"
+  }
+
   render() {
     return (
       <>
