@@ -11,3 +11,6 @@ dbConst.php
 
 # JWT private key
 privateKey.php
+
+# cloc .ps1
+count-lines.ps1
