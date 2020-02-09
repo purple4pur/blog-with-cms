@@ -48,11 +48,12 @@ class Admin extends PureComponent {
           <input type="button" value="退出" onClick={this.handleRmToken} />
           <AdminNav view={this.state.activeView} />
           <Switch>
+            <Redirect from="/admin" to="/admin/manage" exact />
             <Route component={Manage} path="/admin/manage" exact />
             <Route component={NewPost} path="/admin/newpost" exact />
             <Route component={Draft} path="/admin/draft" exact />
             <Route component={Stats} path="/admin/stats" exact />
-            <Redirect to="/admin/manage" />
+            <Redirect to="/404" />
           </Switch>
         </>
       )
