@@ -4,6 +4,11 @@ import { connect } from 'react-redux'
 
 import { verifyToken, removeToken } from 'redux/actions'
 import { Login } from 'views'
+import AdminNav from './AdminNav'
+import Manage from './Manage'
+import NewPost from './NewPost'
+import Draft from './Draft'
+import Stats from './Stats'
 
 class Admin extends PureComponent {
   constructor(props) {
@@ -16,9 +21,9 @@ class Admin extends PureComponent {
   }
 
   componentDidMount() {
-    document.title = (this.state.activeView ? this.state.activeView + ' - ' : '') + "CMS | Purple4pur's Blog"
     this.props.verifyToken()
     this.setState({ isReadyToRedirect: true })
+    document.title = (this.state.activeView ? this.state.activeView + ' - ' : '') + "CMS | Purple4pur's Blog"
   }
 
   render() {
@@ -33,6 +38,14 @@ class Admin extends PureComponent {
         <>
           <span>已经登陆为：{this.props.activeUser}</span>
           <input type="button" value="退出" onClick={this.handleRmToken} />
+          <AdminNav />
+          <Switch>
+            <Route component={Manage} path="/admin/manage" exact />
+            <Route component={NewPost} path="/admin/newpost" exact />
+            <Route component={Draft} path="/admin/draft" exact />
+            <Route component={Stats} path="/admin/stats" exact />
+            <Redirect to="/admin/manage" />
+          </Switch>
         </>
       )
 
@@ -49,7 +62,8 @@ class Admin extends PureComponent {
 const mapToProps = state => ({
   isLoading: state.adminStatus.isLoading,
   isLoggedIn: state.adminStatus.isLoggedIn,
-  activeUser: state.adminStatus.activeUser
+  activeUser: state.adminStatus.activeUser,
+  activeUserID: state.adminStatus.activeUserID
 })
 
 export default connect(

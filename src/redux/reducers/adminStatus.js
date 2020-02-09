@@ -3,7 +3,8 @@ import actionTypes from '../actionTypes'
 const initState = {
   isLoading: false,
   isLoggedIn: false,
-  activeUser: ''
+  activeUser: '',
+  activeUserID: undefined
 }
 
 export default (state = initState, action) => {
@@ -18,14 +19,16 @@ export default (state = initState, action) => {
         ...state,
         isLoading: false,
         isLoggedIn: true,
-        activeUser: action.payload.user
+        activeUser: action.payload.user,
+        activeUserID: action.payload.id
       }
     case actionTypes.VERIFY_TOKEN_FAILED:
       return {
         ...state,
         isLoading: false,
         isLoggedIn: false,
-        activeUser: ''
+        activeUser: '',
+        activeUserID: undefined
       }
     case actionTypes.START_VERIFY_LOGIN:
       return {
@@ -51,7 +54,8 @@ export default (state = initState, action) => {
       return {
         ...state,
         isLoading: false,
-        activeUser: ''
+        activeUser: '',
+        activeUserID: undefined
       }
     default:
       return state

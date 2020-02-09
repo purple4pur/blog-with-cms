@@ -23,7 +23,10 @@ if (isset($_POST["decoratedToken"])) {
             "errMsg" => "Error: Unvalid token.",
         ], JSON_UNESCAPED_UNICODE));
     }
-    echo json_encode(["activeUser" => $payload["username"]], JSON_UNESCAPED_UNICODE);
+    echo json_encode([
+        "activeUser" => $payload["name"],
+        "activeUserID" => $payload["id"],
+    ], JSON_UNESCAPED_UNICODE);
 
 } else {
     if (!isset($_POST["username"]) || $_POST["username"] === "") {
@@ -51,12 +54,15 @@ if (isset($_POST["decoratedToken"])) {
         ], JSON_UNESCAPED_UNICODE));
     }
 
-    $sql_get_admin_pre = "SELECT password FROM admin WHERE username=";
-    $sql_get_admin_post = "";
+    $sql_get_user_pre = "SELECT password,id,name FROM author WHERE username=";
+    $sql_get_user_post = " LIMIT 0,1";
 
-    $result_get_admin = $conn->query($sql_get_admin_pre . '"' . $name . '"' . $sql_get_admin_post);
+    $result_get_user = $conn->query($sql_get_user_pre . '"' . $name . '"' . $sql_get_user_post);
 
-    $savedPwd = $result_get_admin->fetch_assoc()["password"];
+    $result_get_user = $result_get_user->fetch_assoc();
+    $savedPwd = $result_get_user["password"];
+    $name = $result_get_user["name"];
+    $id = $result_get_user["id"];
 
     $conn->close();
 
@@ -77,7 +83,8 @@ if (isset($_POST["decoratedToken"])) {
         "iss" => "https://purple4pur.com",
         "iat" => $_SERVER["REQUEST_TIME"],
         "exp" => $_SERVER["REQUEST_TIME"] + 3600, // stay logged in for 1h
-        "username" => $name,
+        "name" => $name,
+        "id" => $id,
     ];
 
     $token = JWT::encode($payload, $privateKey);

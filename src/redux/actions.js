@@ -97,9 +97,9 @@ const startVerifyToken = () => ({
   type: actionTypes.START_VERIFY_TOKEN
 })
 
-const verifyTokenSuccess = user => ({
+const verifyTokenSuccess = (user, id) => ({
   type: actionTypes.VERIFY_TOKEN_SUCCESS,
-  payload: { user }
+  payload: { user, id }
 })
 
 const verifyTokenFailed = () => ({
@@ -112,7 +112,7 @@ export const verifyToken = () => dispatch => {
     verifyStatus(undefined, undefined, localStorage.getItem('purple4pur/blog:JWT'))
       .then(resp => {
         if (resp.data.activeUser) {
-          dispatch(verifyTokenSuccess(resp.data.activeUser))
+          dispatch(verifyTokenSuccess(resp.data.activeUser, resp.data.activeUserID))
         } else {
           dispatch(verifyTokenFailed())
           dispatch(removeToken())
