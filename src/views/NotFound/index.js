@@ -11,9 +11,11 @@ export default class NotFound extends PureComponent {
   render() {
     return (
       <div className="notfound-box">
-        <h1>404</h1>
-        <p>莫欺我没有写这一页</p>
-        <p>还不速速<Link to="/">返回首页</Link></p>
+        <div className="notfound-txt">
+          <h1>404</h1>
+          <p>莫欺我没有写这一页</p>
+          <p>还不速速<Link to="/">返回首页</Link></p>
+        </div>
       </div>
     )
   }
