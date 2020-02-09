@@ -23,13 +23,7 @@ export default (state = initState, action) => {
         activeUserID: action.payload.id
       }
     case actionTypes.VERIFY_TOKEN_FAILED:
-      return {
-        ...state,
-        isLoading: false,
-        isLoggedIn: false,
-        activeUser: '',
-        activeUserID: undefined
-      }
+      return initState
     case actionTypes.START_VERIFY_LOGIN:
       return {
         ...state,
@@ -51,12 +45,7 @@ export default (state = initState, action) => {
         isLoading: true
       }
     case actionTypes.REMOVE_TOKEN_SUCCESS:
-      return {
-        ...state,
-        isLoading: false,
-        activeUser: '',
-        activeUserID: undefined
-      }
+      return initState
     default:
       return state
   }

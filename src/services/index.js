@@ -7,9 +7,7 @@ const ajax = axios.create({
 
 export const getCategoryList = id => (
   ajax.get('/categories.php', {
-    params: {
-      categoryID: id
-    }
+    params: { categoryID: id }
   })
 )
 
@@ -19,9 +17,13 @@ export const getTagList = () => (
 
 export const getTagPost = id => (
   ajax.get('/tags.php', {
-    params: {
-      tagID: id
-    }
+    params: { tagID: id }
+  })
+)
+
+export const getAuthorPost = id => (
+  ajax.get('/authors.php', {
+    params: { authorID: id }
   })
 )
 

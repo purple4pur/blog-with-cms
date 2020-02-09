@@ -1,11 +1,22 @@
 import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
 
-export default class Manage extends PureComponent {
+import { PostList } from 'components'
+
+class Manage extends PureComponent {
   render() {
     return (
-      <div>
-        Manage
-      </div>
+      <>
+        <PostList authorID={this.props.activeUserID} />
+      </>
     )
   }
 }
+
+const mapToProps = state => ({
+  activeUserID: state.adminStatus.activeUserID
+})
+
+export default connect(
+  mapToProps
+)(Manage)

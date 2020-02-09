@@ -10,6 +10,14 @@ import NewPost from './NewPost'
 import Draft from './Draft'
 import Stats from './Stats'
 
+const title = {
+  'login': '登陆',
+  'manage': '文章管理',
+  'newpost': '文章发布',
+  'draft': '草稿箱',
+  'stats': '技术统计'
+}
+
 class Admin extends PureComponent {
   constructor(props) {
     super(props)
@@ -21,9 +29,9 @@ class Admin extends PureComponent {
   }
 
   componentDidMount() {
+    document.title = title[this.state.activeView] + " - CMS | Purple4pur's Blog"
     this.props.verifyToken()
     this.setState({ isReadyToRedirect: true })
-    document.title = (this.state.activeView ? this.state.activeView + ' - ' : '') + "CMS | Purple4pur's Blog"
   }
 
   render() {
@@ -38,7 +46,7 @@ class Admin extends PureComponent {
         <>
           <span>已经登陆为：{this.props.activeUser}</span>
           <input type="button" value="退出" onClick={this.handleRmToken} />
-          <AdminNav />
+          <AdminNav view={this.state.activeView} />
           <Switch>
             <Route component={Manage} path="/admin/manage" exact />
             <Route component={NewPost} path="/admin/newpost" exact />
