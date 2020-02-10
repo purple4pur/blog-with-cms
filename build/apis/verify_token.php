@@ -16,8 +16,8 @@ function verify_token($decoratedToken)
             "errMsg" => "Error: Unvalid token.",
         ], JSON_UNESCAPED_UNICODE));
     }
-    echo json_encode([
+    return [
         "activeUser" => $payload["name"],
         "activeUserID" => $payload["id"],
-    ], JSON_UNESCAPED_UNICODE);
+    ];
 }

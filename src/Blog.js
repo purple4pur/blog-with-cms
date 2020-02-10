@@ -3,7 +3,8 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import './Blog.css'
-import { Header, Footer, ErrorBox } from 'components'
+import { Header, Footer } from 'components'
+import { ErrorBox } from 'containers'
 import {
   Home,
   Coding,
@@ -32,9 +33,7 @@ class Blog extends Component {
           <Redirect to="/404" />
         </Switch>
         <Footer />
-        {
-          this.props.isError ? <ErrorBox /> : null
-        }
+        {this.props.isError ? <ErrorBox /> : null}
       </>
     )
   }

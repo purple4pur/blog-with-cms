@@ -15,7 +15,7 @@ header('Access-Control-Expose-Headers: Authorization');
 $_POST = json_decode(file_get_contents("php://input"), true);
 
 if (isset($_POST["decoratedToken"])) {
-    verify_token($_POST["decoratedToken"]);
+    echo json_encode(verify_token($_POST["decoratedToken"]), JSON_UNESCAPED_UNICODE);
 
 } else {
     if (!isset($_POST["username"]) || $_POST["username"] === "") {

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 
-import { PostList } from 'components'
+import { PostList } from 'containers'
 
 class Manage extends PureComponent {
   render() {

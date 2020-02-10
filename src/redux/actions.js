@@ -1,6 +1,6 @@
 import actionTypes from './actionTypes'
 
-import { getCategoryList, getTagList, getTagPost, getAuthorPost, verifyStatus } from 'services'
+import { getCategoryList, getTagList, getTagPost, getAuthorPost, verifyStatus, updatePost } from 'services'
 
 const startFetchList = () => ({
   type: actionTypes.START_FETCH_LIST
@@ -205,3 +205,24 @@ const setErrorMsg = code => ({
 export const resetErrorMsg = () => ({
   type: actionTypes.RESET_ERROR_MSG
 })
+
+const startAddPost = () => ({
+  type: actionTypes.START_ADD_POST
+})
+
+const addPostSuccess = () => ({
+  type: actionTypes.ADD_POST_SUCCESS
+})
+
+const addPostFaild = () => ({
+  type: actionTypes.ADD_POST_FAILED
+})
+
+export const addPost = (title, content) => dispatch => {
+  dispatch(startAddPost())
+  updatePost(localStorage.getItem('purple4pur/blog:JWT'), title, content)
+    .then(resp => {
+      console.log(resp.data)
+    })
+  dispatch(addPostSuccess())
+}

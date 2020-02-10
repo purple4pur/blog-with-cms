@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 
-import { PostList } from 'components'
+import { PostList } from 'containers'
 
 export default class Thoughts extends PureComponent {
   componentDidMount() {

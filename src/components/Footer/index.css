@@ -1,4 +1,4 @@
-footer {
+.footer {
   text-align        : center;
   font-size         : 14px;
   color             : #bdc3c7;
@@ -7,15 +7,15 @@ footer {
   grid-template-rows: 1fr 1fr;
 }
 
-footer span {
+.footer span {
   padding: 4px 0;
 }
 
-footer a {
+.footer a {
   color     : #bdc3c7;
   transition: .3s;
 }
 
-footer a:hover {
+.footer a:hover {
   color: #95a5a6;
 }

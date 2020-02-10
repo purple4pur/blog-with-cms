@@ -5,6 +5,8 @@ const ajax = axios.create({
   // baseURL: 'http://localhost/php' // debug
 })
 
+ajax.defaults.headers.post['Content-type'] = 'application/json; charset=utf-8'
+
 export const getCategoryList = id => (
   ajax.get('/categories.php', {
     params: { categoryID: id }
@@ -32,5 +34,13 @@ export const verifyStatus = (user, pwd, token) => (
     username: user,
     password: pwd,
     decoratedToken: token
-  }, { headers: { 'Content-type': 'application/json; charset=utf-8' } })
+  })
+)
+
+export const updatePost = (token, ttl, cntt) => (
+  ajax.post('/update_post.php', {
+    decoratedToken: token,
+    title: ttl,
+    content: cntt
+  })
 )

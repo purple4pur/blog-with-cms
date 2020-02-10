@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 
-import { TagList, PostList } from 'components'
+import { TagList, PostList } from 'containers'
 
 export default class Tags extends PureComponent {
   componentDidMount() {
