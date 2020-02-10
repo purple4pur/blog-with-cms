@@ -16,6 +16,8 @@ const msg = {
   6: '无效 JWT',
   7: '网络错误',
   8: '查询结果为空',
+  9: '标题为空',
+  10: '正文为空',
   99: '未知错误'
 }
 
@@ -29,10 +31,7 @@ export default (state = initState, action) => {
         errMsg: msg[action.payload.code]
       }
     case actionTypes.RESET_ERROR_MSG:
-      return {
-        ...state,
-        isError: false
-      }
+      return initState
     default:
       return state
   }

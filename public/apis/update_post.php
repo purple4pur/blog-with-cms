@@ -22,7 +22,6 @@ if (!isset($_POST["content"]) || $_POST["content"] === "") {
         "errCode" => 10,
         "errMsg" => "Error: No content.",
     ], JSON_UNESCAPED_UNICODE));
-
 }
 
 $title = $_POST["title"];
@@ -47,3 +46,5 @@ $id = $conn->insert_id;
 $conn->query($sql_add_info_pre . '"' . $id . '", "' . $authorID . '", "' . $categoryID . '"' . $sql_add_info_post);
 
 $conn->close();
+
+echo json_encode(["status" => "OK"], JSON_UNESCAPED_UNICODE);

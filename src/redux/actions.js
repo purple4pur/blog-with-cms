@@ -205,10 +205,14 @@ export const verifyLogin = (user, pwd) => dispatch => {
         localStorage.setItem('purple4pur/blog:JWT', resp.headers.authorization)
         dispatch(verifyLoginSuccess())
         dispatch(verifyToken())
-      } else {
+      } else if (resp.data.errCode) {
         console.log(resp.data.errMsg)
         dispatch(verifyLoginFailed())
         dispatch(setErrorMsg(resp.data.errCode))
+      } else {
+        console.log('Error: ' + resp.data)
+        dispatch(verifyLoginFailed())
+        dispatch(setErrorMsg(99))
       }
     })
     .catch(err => {
@@ -250,15 +254,36 @@ const addPostSuccess = () => ({
   type: actionTypes.ADD_POST_SUCCESS
 })
 
-const addPostFaild = () => ({
+const addPostFailed = () => ({
   type: actionTypes.ADD_POST_FAILED
+})
+
+const resetAddPostMsg = () => ({
+  type: actionTypes.RESET_ADD_POST_MSG
 })
 
 export const addPost = (title, content) => dispatch => {
   dispatch(startAddPost())
   updatePost(localStorage.getItem('purple4pur/blog:JWT'), title, content)
     .then(resp => {
-      console.log(resp.data)
+      if (resp.data.status) {
+        dispatch(addPostSuccess())
+      } else if (resp.data.errCode) {
+        console.log(resp.data.errMsg)
+        dispatch(addPostFailed())
+        dispatch(setErrorMsg(resp.data.errCode))
+      } else {
+        console.log('Error: ' + resp.data)
+        dispatch(addPostFailed())
+        dispatch(setErrorMsg(99))
+      }
     })
-  dispatch(addPostSuccess())
+    .catch(err => {
+      console.log(err)
+      dispatch(addPostFailed())
+      dispatch(setErrorMsg(7))
+    })
+    .finally(() => {
+      setTimeout(() => { dispatch(resetAddPostMsg()) }, 5000)
+    })
 }

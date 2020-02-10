@@ -30,8 +30,12 @@ class NewPost extends PureComponent {
             <span>正文预览：</span>
             <PostContent content={this.state.content} />
           </div>
-          <input type="submit" value="发布" onClick={this.handleSubmit} />
+          <div>
+            <span>{this.props.msg}</span>
+            <input type="submit" value="发布" onClick={this.handleSubmit} />
+          </div>
         </form>
+        {this.props.isLoading ? <div>发布中...</div> : null}
       </>
     )
   }
@@ -51,7 +55,8 @@ class NewPost extends PureComponent {
 }
 
 const mapToProps = state => ({
-
+  isLoading: state.addPost.isLoading,
+  msg: state.addPost.msg
 })
 
 export default connect(
