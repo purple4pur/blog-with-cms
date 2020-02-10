@@ -32,5 +32,5 @@ export const verifyStatus = (user, pwd, token) => (
     username: user,
     password: pwd,
     decoratedToken: token
-  })
+  }, { headers: { 'Content-type': 'application/json; charset=utf-8' } })
 )

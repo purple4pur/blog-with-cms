@@ -2,31 +2,20 @@
 require_once './consts/dbConst.php';
 require_once './vendor/autoload.php';
 require_once './consts/privateKey.php';
+require_once './verify_token.php';
 
 use \Firebase\JWT\JWT;
 
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Request-Method: POST');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
-header('Content-Type: application/x-www-form-urlencoded;');
+header('Content-type: application/json; charset=utf-8');
 header('Access-Control-Expose-Headers: Authorization');
 
 $_POST = json_decode(file_get_contents("php://input"), true);
 
 if (isset($_POST["decoratedToken"])) {
-    $token = explode(" ", $_POST["decoratedToken"])[1];
-    try {
-        $payload = (array) JWT::decode($token, $privateKey, array('HS256'));
-    } catch (Exception $e) {
-        die(json_encode([
-            "errCode" => 6,
-            "errMsg" => "Error: Unvalid token.",
-        ], JSON_UNESCAPED_UNICODE));
-    }
-    echo json_encode([
-        "activeUser" => $payload["name"],
-        "activeUserID" => $payload["id"],
-    ], JSON_UNESCAPED_UNICODE);
+    verify_token($_POST["decoratedToken"]);
 
 } else {
     if (!isset($_POST["username"]) || $_POST["username"] === "") {
