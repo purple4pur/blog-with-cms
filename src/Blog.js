@@ -13,7 +13,8 @@ import {
   About,
   Tags,
   NotFound,
-  Admin
+  Admin,
+  Post
 } from 'views'
 
 class Blog extends Component {
@@ -27,6 +28,7 @@ class Blog extends Component {
           <Route component={Creating} path="/creating" exact />
           <Route component={Thoughts} path="/thoughts" exact />
           <Route component={Tags} path="/tags/:tagID?" exact />
+          <Route component={Post} path="/post/:id" exact />
           <Route component={About} path="/about" exact />
           <Route component={Admin} path="/admin/:viewSelector?" exact />
           <Route component={NotFound} path="/404" exact />

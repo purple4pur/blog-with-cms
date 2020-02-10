@@ -1,6 +1,42 @@
 import actionTypes from './actionTypes'
 
-import { getCategoryList, getTagList, getTagPost, getAuthorPost, verifyStatus, updatePost } from 'services'
+import { getPost, getCategoryList, getTagList, getTagPost, getAuthorPost, verifyStatus, updatePost } from 'services'
+
+const startFetchPost = () => ({
+  type: actionTypes.START_FETCH_POST
+})
+
+const fetchPostSuccess = data => ({
+  type: actionTypes.FETCH_POST_SUCCESS,
+  payload: { data }
+})
+
+const fetchPostFailed = () => ({
+  type: actionTypes.FETCH_POST_FAILED
+})
+
+export const fetchPost = postID => dispatch => {
+  dispatch(startFetchPost())
+  getPost(postID)
+    .then(resp => {
+      if (resp.data.errCode) {
+        console.log(resp.data.errMsg)
+        dispatch(fetchPostFailed())
+        dispatch(setErrorMsg(resp.data.errCode))
+      } else if (resp.data.id) {
+        dispatch(fetchPostSuccess(resp.data))
+      } else {
+        console.log('Error: ' + resp.data)
+        dispatch(fetchPostFailed())
+        dispatch(setErrorMsg(99))
+      }
+    })
+    .catch(err => {
+      console.log(err)
+      dispatch(fetchListFailed())
+      dispatch(setErrorMsg(7))
+    })
+}
 
 const startFetchList = () => ({
   type: actionTypes.START_FETCH_LIST

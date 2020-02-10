@@ -7,6 +7,12 @@ const ajax = axios.create({
 
 ajax.defaults.headers.post['Content-type'] = 'application/json; charset=utf-8'
 
+export const getPost = id => (
+  ajax.get('/post.php', {
+    params: { postID: id }
+  })
+)
+
 export const getCategoryList = id => (
   ajax.get('/categories.php', {
     params: { categoryID: id }

@@ -1,13 +1,12 @@
 import React, { PureComponent } from 'react'
-
-import { PostContent } from 'containers'
+import { Link } from 'react-router-dom'
 
 export default class PostItem extends PureComponent {
   render() {
+    console.log(this.props)
     return (
       <li>
-        <h3>{this.props.title}</h3>
-        <PostContent content={this.props.content} />
+        <Link to={'/post/' + this.props.id}><h3>{this.props.title}</h3></Link>
       </li>
     )
   }
