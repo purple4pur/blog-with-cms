@@ -43,12 +43,13 @@ export const verifyStatus = (user, pwd, token) => (
   })
 )
 
-export const updatePost = (token, typ, ttl, cntt) => (
+export const updatePost = (token, typ, ttl, cntt, cateID) => (
   ajax.post('/update_post.php', {
     decoratedToken: token,
     type: typ,
     title: ttl,
-    content: cntt
+    content: cntt,
+    categoryID: cateID
   })
 )
 

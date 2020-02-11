@@ -10,6 +10,7 @@ header('Content-type: application/json; charset=utf-8');
 $_POST = json_decode(file_get_contents("php://input"), true);
 
 $authorID = verify_token($_POST["decoratedToken"])["activeUserID"];
+$cateList = [1, 2, 3];
 
 switch ($_POST["type"]) {
     case "post":
@@ -25,10 +26,16 @@ switch ($_POST["type"]) {
                 "errMsg" => "Error: No content.",
             ], JSON_UNESCAPED_UNICODE));
         }
+        if (!isset($_POST["categoryID"]) || !in_array($_POST["categoryID"], $cateList)) {
+            die(json_encode([
+                "errCode" => 12,
+                "errMsg" => "Error: Undefined category.",
+            ], JSON_UNESCAPED_UNICODE));
+        }
 
         $title = $_POST["title"];
         $content = $_POST["content"];
-        $categoryID = 2;
+        $categoryID = $_POST["categoryID"];
 
         $conn = new mysqli($servername, $username, $password, $dbname);
         if ($conn->connect_error) {
@@ -59,10 +66,16 @@ switch ($_POST["type"]) {
                 "errMsg" => "Error: No title.",
             ], JSON_UNESCAPED_UNICODE));
         }
+        if (!isset($_POST["categoryID"]) || !in_array($_POST["categoryID"], $cateList)) {
+            die(json_encode([
+                "errCode" => 12,
+                "errMsg" => "Error: Undefined category.",
+            ], JSON_UNESCAPED_UNICODE));
+        }
 
         $title = $_POST["title"];
-        $content = isset($_POST["content"]) || "";
-        $categoryID = 2;
+        $content = $_POST["content"] || "";
+        $categoryID = $_POST["categoryID"];
 
         $conn = new mysqli($servername, $username, $password, $dbname);
         if ($conn->connect_error) {

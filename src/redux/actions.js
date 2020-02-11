@@ -297,9 +297,9 @@ const resetAddMsg = () => ({
   type: actionTypes.RESET_ADD_MSG
 })
 
-export const addPost = (title, content) => dispatch => {
+export const addPost = (title, content, categoryID) => dispatch => {
   dispatch(startAdd())
-  updatePost(localStorage.getItem('purple4pur/blog:JWT'), 'post', title, content)
+  updatePost(localStorage.getItem('purple4pur/blog:JWT'), 'post', title, content, categoryID)
     .then(resp => {
       if (resp.data.status) {
         dispatch(addPostSuccess())
