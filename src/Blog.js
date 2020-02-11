@@ -22,18 +22,20 @@ class Blog extends Component {
     return (
       <>
         <Header />
-        <Switch>
-          <Route component={Home} path="/" exact />
-          <Route component={Coding} path="/coding" exact />
-          <Route component={Creating} path="/creating" exact />
-          <Route component={Thoughts} path="/thoughts" exact />
-          <Route component={Tags} path="/tags/:tagID?" exact />
-          <Route component={Post} path="/post/:id" exact />
-          <Route component={About} path="/about" exact />
-          <Route component={Admin} path="/admin/:viewSelector?" exact />
-          <Route component={NotFound} path="/404" exact />
-          <Redirect to="/404" />
-        </Switch>
+        <main className="main">
+          <Switch>
+            <Route component={Home} path="/" exact />
+            <Route component={Coding} path="/coding" exact />
+            <Route component={Creating} path="/creating" exact />
+            <Route component={Thoughts} path="/thoughts" exact />
+            <Route component={Tags} path="/tags/:tagID?" exact />
+            <Route component={Post} path="/post/:id" exact />
+            <Route component={About} path="/about" exact />
+            <Route component={Admin} path="/admin/:viewSelector?" exact />
+            <Route component={NotFound} path="/404" exact />
+            <Redirect to="/404" />
+          </Switch>
+        </main>
         <Footer />
         {this.props.isError ? <ErrorBox /> : null}
       </>

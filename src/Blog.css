@@ -11,3 +11,25 @@ body {
   width: 100vw;
   color: #2c3e50;
 }
+
+.main {
+  width  : 100%;
+  margin : auto;
+  padding: 28px;
+}
+
+@media only screen and (min-width: 600px) {
+  /* for tablets */
+
+  .main {
+    padding: 40px 60px;
+  }
+}
+
+@media only screen and (min-width: 1080px) {
+  /* for desktops */
+
+  .main {
+    width: 1080px;
+  }
+}
