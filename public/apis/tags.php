@@ -12,7 +12,7 @@ if ($conn->connect_error) {
 }
 
 $sql_get_info_pre = "SELECT post_info.post_id AS id, post.time, post.title, post.content, author.name AS author FROM post_tag, post_info, post, author WHERE post_tag.tag_id=";
-$sql_get_info_post = " AND post_info.post_id=post_tag.post_id AND post.id=post_tag.post_id AND author.id=post_info.author_id";
+$sql_get_info_post = " AND post_info.post_id=post_tag.post_id AND post.id=post_tag.post_id AND author.id=post_info.author_id AND post_info.plc_pvt_dft=1 ORDER BY post.time DESC";
 $sql_get_tag_pre = "SELECT tag.id, tag.name FROM post_tag, tag WHERE post_tag.post_id=";
 $sql_get_tag_post = " AND tag.id=post_tag.tag_id";
 $sql_get_all_tag = "SELECT * FROM tag ORDER BY name";

@@ -2,6 +2,11 @@
 
 > 此文档只记录网页上「看得见」的变化，代码变化请查看 [commit message](https://github.com/purple4pur/blog-with-cms/commits/master)。
 
+### 2020 / 02 / 11
+
+`+` 草稿箱显示文章列表<br />
+`+` 文章增加三种状态（公开、私密、草稿）
+
 ### 2020 / 02 / 10
 
 `+` 成功提交文章了！szd!<br />

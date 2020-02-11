@@ -71,7 +71,7 @@ if (isset($_POST["decoratedToken"])) {
     $payload = [
         "iss" => "https://purple4pur.com",
         "iat" => $_SERVER["REQUEST_TIME"],
-        "exp" => $_SERVER["REQUEST_TIME"] + 3600, // stay logged in for 1h
+        "exp" => $_SERVER["REQUEST_TIME"] + 7200, // stay logged in for 2h
         "name" => $name,
         "id" => $id,
     ];

@@ -1,6 +1,15 @@
 import actionTypes from './actionTypes'
 
-import { getPost, getCategoryList, getTagList, getTagPost, getAuthorPost, verifyStatus, updatePost } from 'services'
+import {
+  getPost,
+  getCategoryList,
+  getTagList,
+  getTagPost,
+  getAuthorPost,
+  verifyStatus,
+  updatePost,
+  getPvtDft
+} from 'services'
 
 const startFetchPost = () => ({
   type: actionTypes.START_FETCH_POST
@@ -51,7 +60,7 @@ const fetchListFailed = () => ({
   type: actionTypes.FETCH_LIST_FAILED
 })
 
-export const fetchList = (categoryID, tagID, authorID) => dispatch => {
+export const fetchList = (categoryID, tagID, authorID, type) => dispatch => {
   dispatch(startFetchList())
   if (categoryID) {
     getCategoryList(categoryID)
@@ -95,7 +104,7 @@ export const fetchList = (categoryID, tagID, authorID) => dispatch => {
         dispatch(setErrorMsg(7))
       })
 
-  } else {
+  } else if (authorID) {
     getAuthorPost(authorID)
       .then(resp => {
         if (resp.data.errCode) {
@@ -115,6 +124,32 @@ export const fetchList = (categoryID, tagID, authorID) => dispatch => {
         dispatch(fetchListFailed())
         dispatch(setErrorMsg(7))
       })
+
+  } else {
+    if (localStorage.getItem('purple4pur/blog:JWT')) {
+      getPvtDft(localStorage.getItem('purple4pur/blog:JWT'), type)
+        .then(resp => {
+          if (resp.data.errCode) {
+            console.log(resp.data.errMsg)
+            dispatch(fetchListFailed())
+            dispatch(setErrorMsg(resp.data.errCode))
+          } else if (resp.data[0].id) {
+            dispatch(fetchListSuccess(resp.data))
+          } else {
+            console.log('Error: ' + resp.data)
+            dispatch(fetchListFailed())
+            dispatch(setErrorMsg(99))
+          }
+        })
+        .catch(err => {
+          console.log(err)
+          dispatch(fetchListFailed())
+          dispatch(setErrorMsg(7))
+        })
+    } else {
+      dispatch(fetchListFailed())
+      dispatch(verifyToken())
+    }
   }
 }
 
@@ -246,8 +281,8 @@ export const resetErrorMsg = () => ({
   type: actionTypes.RESET_ERROR_MSG
 })
 
-const startAddPost = () => ({
-  type: actionTypes.START_ADD_POST
+const startAdd = () => ({
+  type: actionTypes.START_ADD
 })
 
 const addPostSuccess = () => ({
@@ -258,13 +293,13 @@ const addPostFailed = () => ({
   type: actionTypes.ADD_POST_FAILED
 })
 
-const resetAddPostMsg = () => ({
-  type: actionTypes.RESET_ADD_POST_MSG
+const resetAddMsg = () => ({
+  type: actionTypes.RESET_ADD_MSG
 })
 
 export const addPost = (title, content) => dispatch => {
-  dispatch(startAddPost())
-  updatePost(localStorage.getItem('purple4pur/blog:JWT'), title, content)
+  dispatch(startAdd())
+  updatePost(localStorage.getItem('purple4pur/blog:JWT'), 'post', title, content)
     .then(resp => {
       if (resp.data.status) {
         dispatch(addPostSuccess())
@@ -284,6 +319,40 @@ export const addPost = (title, content) => dispatch => {
       dispatch(setErrorMsg(7))
     })
     .finally(() => {
-      setTimeout(() => { dispatch(resetAddPostMsg()) }, 5000)
+      setTimeout(() => { dispatch(resetAddMsg()) }, 5000)
+    })
+}
+
+const addDraftSuccess = () => ({
+  type: actionTypes.ADD_DRAFT_SUCCESS
+})
+
+const addDraftFailed = () => ({
+  type: actionTypes.ADD_DRAFT_FAILED
+})
+
+export const addDraft = (title, content) => dispatch => {
+  dispatch(startAdd())
+  updatePost(localStorage.getItem('purple4pur/blog:JWT'), 'draft', title, content)
+    .then(resp => {
+      if (resp.data.status) {
+        dispatch(addDraftSuccess())
+      } else if (resp.data.errCode) {
+        console.log(resp.data.errMsg)
+        dispatch(addDraftFailed())
+        dispatch(setErrorMsg(resp.data.errCode))
+      } else {
+        console.log('Error: ' + resp.data)
+        dispatch(addDraftFailed())
+        dispatch(setErrorMsg(99))
+      }
+    })
+    .catch(err => {
+      console.log(err)
+      dispatch(addDraftFailed())
+      dispatch(setErrorMsg(7))
+    })
+    .finally(() => {
+      setTimeout(() => { dispatch(resetAddMsg()) }, 5000)
     })
 }

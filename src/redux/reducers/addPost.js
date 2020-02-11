@@ -7,7 +7,7 @@ const initState = {
 
 export default (state = initState, action) => {
   switch (action.type) {
-    case actionTypes.START_ADD_POST:
+    case actionTypes.START_ADD:
       return {
         ...state,
         isLoading: true
@@ -24,7 +24,19 @@ export default (state = initState, action) => {
         isLoading: false,
         msg: '发布失败'
       }
-    case actionTypes.RESET_ADD_POST_MSG:
+    case actionTypes.ADD_DRAFT_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        msg: '保存成功'
+      }
+    case actionTypes.ADD_DRAFT_FAILED:
+      return {
+        ...state,
+        isLoading: false,
+        msg: '保存失败'
+      }
+    case actionTypes.RESET_ADD_MSG:
       return initState
     default:
       return state

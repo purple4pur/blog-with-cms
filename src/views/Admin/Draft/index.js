@@ -1,11 +1,13 @@
 import React, { PureComponent } from 'react'
 
+import { PostList } from 'containers'
+
 export default class Draft extends PureComponent {
   render() {
     return (
-      <div>
-        Draft
-      </div>
+      <>
+        <PostList type="draft" />
+      </>
     )
   }
 }

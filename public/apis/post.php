@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 }
 
 $sql_get_info_pre = "SELECT post_info.post_id AS id, post.time, post.title, post.content, author.name AS author FROM post_info, post, author WHERE post_info.post_id=";
-$sql_get_info_post = " AND post_info.post_id=post.id AND post_info.author_id=author.id LIMIT 0,1";
+$sql_get_info_post = " AND post_info.post_id=post.id AND post_info.author_id=author.id AND post_info.plc_pvt_dft=1 LIMIT 0,1";
 $sql_get_tag_pre = "SELECT tag.id, tag.name FROM post_tag, tag WHERE post_tag.post_id=";
 $sql_get_tag_post = " AND tag.id=post_tag.tag_id";
 
