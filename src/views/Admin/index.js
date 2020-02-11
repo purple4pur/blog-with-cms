@@ -8,14 +8,14 @@ import AdminNav from './AdminNav'
 import Manage from './Manage'
 import NewPost from './NewPost'
 import Draft from './Draft'
-import Stats from './Stats'
+import Private from './Private'
 
 const title = {
   'login': '登陆',
   'manage': '文章管理',
   'newpost': '文章发布',
   'draft': '草稿箱',
-  'stats': '技术统计'
+  'private': '非公开文章'
 }
 
 class Admin extends PureComponent {
@@ -52,7 +52,7 @@ class Admin extends PureComponent {
             <Route component={Manage} path="/admin/manage" exact />
             <Route component={NewPost} path="/admin/newpost" exact />
             <Route component={Draft} path="/admin/draft" exact />
-            <Route component={Stats} path="/admin/stats" exact />
+            <Route component={Private} path="/admin/private" exact />
             <Redirect to="/404" />
           </Switch>
         </>

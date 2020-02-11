@@ -7,7 +7,7 @@ export default class PostContent extends PureComponent {
   render() {
     return (
       <div className="markdown-body">
-        <ReactMarkdown source={this.props.content} />
+        <ReactMarkdown source={this.props.content} skipHtml={true} />
       </div>
     )
   }

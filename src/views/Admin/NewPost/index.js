@@ -55,7 +55,8 @@ class NewPost extends PureComponent {
 
           <div>
             <span>{this.props.msg}</span>
-            <input type="submit" value="发布" onClick={this.handleSubmit} />
+            <input type="submit" value="保存到草稿箱" onClick={this.handleSave} />
+            <input type="submit" value="发布" onClick={this.handleAddPost} />
           </div>
         </form>
         {this.props.isLoading ? <div>发布中...</div> : null}
@@ -75,9 +76,14 @@ class NewPost extends PureComponent {
     this.setState({ content: e.target.value })
   }
 
-  handleSubmit = (e) => {
+  handleSave = (e) => {
     e.preventDefault()
-    this.props.addPost(this.state.title, this.state.content, this.state.category)
+    this.props.addPost('draft', this.state.title, this.state.content, this.state.category)
+  }
+
+  handleAddPost = (e) => {
+    e.preventDefault()
+    this.props.addPost('post', this.state.title, this.state.content, this.state.category)
   }
 }
 

@@ -62,50 +62,16 @@ const fetchListFailed = () => ({
 
 export const fetchList = (categoryID, tagID, authorID, type) => dispatch => {
   dispatch(startFetchList())
-  if (categoryID) {
-    getCategoryList(categoryID)
-      .then(resp => {
-        if (resp.data.errCode) {
-          console.log(resp.data.errMsg)
-          dispatch(fetchListFailed())
-          dispatch(setErrorMsg(resp.data.errCode))
-        } else if (resp.data[0].id) {
-          dispatch(fetchListSuccess(resp.data))
-        } else {
-          console.log('Error: ' + resp.data)
-          dispatch(fetchListFailed())
-          dispatch(setErrorMsg(99))
-        }
-      })
-      .catch(err => {
-        console.log(err)
-        dispatch(fetchListFailed())
-        dispatch(setErrorMsg(7))
-      })
-
-  } else if (tagID) {
-    getTagPost(tagID)
-      .then(resp => {
-        if (resp.data.errCode) {
-          console.log(resp.data.errMsg)
-          dispatch(fetchListFailed())
-          dispatch(setErrorMsg(resp.data.errCode))
-        } else if (resp.data[0].id) {
-          dispatch(fetchListSuccess(resp.data))
-        } else {
-          console.log('Error: ' + resp.data)
-          dispatch(fetchListFailed())
-          dispatch(setErrorMsg(99))
-        }
-      })
-      .catch(err => {
-        console.log(err)
-        dispatch(fetchListFailed())
-        dispatch(setErrorMsg(7))
-      })
-
-  } else if (authorID) {
-    getAuthorPost(authorID)
+  if (!type) {
+    let request
+    if (categoryID) {
+      request = getCategoryList(categoryID)
+    } else if (tagID) {
+      request = getTagPost(tagID)
+    } else if (authorID) {
+      request = getAuthorPost(authorID)
+    }
+    request
       .then(resp => {
         if (resp.data.errCode) {
           console.log(resp.data.errMsg)
@@ -297,25 +263,31 @@ const resetAddMsg = () => ({
   type: actionTypes.RESET_ADD_MSG
 })
 
-export const addPost = (title, content, categoryID) => dispatch => {
+export const addPost = (type, title, content, categoryID) => dispatch => {
   dispatch(startAdd())
-  updatePost(localStorage.getItem('purple4pur/blog:JWT'), 'post', title, content, categoryID)
+  let success = addPostSuccess()
+  let failed = addPostFailed()
+  if (type === 'draft') {
+    success = addDraftSuccess()
+    failed = addDraftFailed()
+  }
+  updatePost(localStorage.getItem('purple4pur/blog:JWT'), type, title, content, categoryID)
     .then(resp => {
       if (resp.data.status) {
-        dispatch(addPostSuccess())
+        dispatch(success)
       } else if (resp.data.errCode) {
         console.log(resp.data.errMsg)
-        dispatch(addPostFailed())
+        dispatch(failed)
         dispatch(setErrorMsg(resp.data.errCode))
       } else {
         console.log('Error: ' + resp.data)
-        dispatch(addPostFailed())
+        dispatch(failed)
         dispatch(setErrorMsg(99))
       }
     })
     .catch(err => {
       console.log(err)
-      dispatch(addPostFailed())
+      dispatch(failed)
       dispatch(setErrorMsg(7))
     })
     .finally(() => {

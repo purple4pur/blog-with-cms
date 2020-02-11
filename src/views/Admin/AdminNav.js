@@ -18,8 +18,8 @@ export default class AdminNav extends PureComponent {
           <Link to="/admin/draft">草稿箱</Link>
         </li>
         <li>
-          {this.props.view === 'stats' ? '*' : ''}
-          <Link to="/admin/stats">技术统计</Link>
+          {this.props.view === 'private' ? '*' : ''}
+          <Link to="/admin/private">非公开文章</Link>
         </li>
       </ul>
     )

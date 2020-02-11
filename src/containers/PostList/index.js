@@ -5,6 +5,14 @@ import { fetchList } from 'redux/actions'
 import PostItem from './PostItem'
 
 class PostList extends PureComponent {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      isPublic: true
+    }
+  }
+
   componentDidMount() {
     if (this.props.categoryID) {
       this.props.fetchList(this.props.categoryID, undefined, undefined, undefined)
@@ -14,6 +22,7 @@ class PostList extends PureComponent {
       this.props.fetchList(undefined, undefined, this.props.authorID, undefined)
     } else {
       this.props.fetchList(undefined, undefined, undefined, this.props.type)
+      this.setState({ isPublic: false })
     }
   }
 
@@ -22,14 +31,14 @@ class PostList extends PureComponent {
       return <div>loading...</div>
 
     } else if (this.props.fetchError) {
-      return null
+      return <div>获取数据失败</div>
 
     } else {
       return (
         <ul>
           {
             this.props.list.map(item => (
-              <PostItem key={item.id} {...item} />
+              <PostItem key={item.id} {...item} isPublic={this.state.isPublic} />
             ))
           }
         </ul>
