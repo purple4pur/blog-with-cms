@@ -1,0 +1,153 @@
+.markdown-body p {
+  font-size  : 16px;
+  margin     : 22px 0;
+  line-height: 1.6em;
+}
+
+.markdown-body blockquote p {
+  padding-left: 8px;
+  color       : #95a5a6;
+  border-left : #95a5a6 solid 4px;
+}
+
+.markdown-body h1 {
+  font-size: 24px;
+  margin   : 22px 0;
+}
+
+.markdown-body h2 {
+  font-size: 20px;
+  margin   : 20px 0;
+}
+
+.markdown-body h3 {
+  font-size    : 18px;
+  margin-top   : 18px;
+  margin-bottom: 12px;
+}
+
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  font-size    : 16px;
+  margin-top   : 14px;
+  margin-bottom: 8px;
+}
+
+.markdown-body del {
+  text-decoration: line-through;
+}
+
+.markdown-body a {
+  color  : #2980b9;
+  outline: none;
+}
+
+.markdown-body code {
+  font-family  : Consolas, 'Courier New', Courier, monospace;
+  padding      : 2px 4px;
+  background   : #f1f2f6;
+  border-radius: 4px;
+}
+
+.markdown-body ol,
+.markdown-body ul {
+  margin      : 12px 0;
+  padding-left: 24px;
+}
+
+.markdown-body li {
+  line-height: 1.6em;
+}
+
+.markdown-body li ol,
+.markdown-body li ul {
+  margin      : auto;
+  padding-left: 24px;
+}
+
+.markdown-body li p {
+  margin: auto;
+}
+
+.markdown-body ul>li>input[type="checkbox"] {
+  margin-left : -20px;
+  margin-right: 6px;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+}
+
+.markdown-body th,
+.markdown-body td {
+  padding: 4px 10px;
+}
+
+.markdown-body th {
+  border-bottom: #16a085 solid 2px;
+}
+
+.markdown-body td {
+  border-top: #1abc9c solid 1px;
+}
+
+.markdown-body pre {
+  margin            : 10px 0;
+  padding           : 14px 18px;
+  background        : #f1f2f6;
+  border-radius     : 8px;
+  overflow-x        : scroll;
+  -ms-overflow-style: none;
+  scrollbar-width   : none;
+}
+
+.markdown-body pre::-webkit-scrollbar {
+  display: none;
+}
+
+.markdown-body pre>code {
+  padding   : 0;
+  background: none;
+}
+
+.markdown-body hr {
+  margin: 18px 0;
+}
+
+@media only screen and (min-width: 600px) {
+  /* for tablets and desktops */
+
+  .markdown-body {
+    padding: 0 18px;
+  }
+
+  .markdown-body h1 {
+    font-size: 32px;
+  }
+
+  .markdown-body h2 {
+    font-size: 26px;
+  }
+
+  .markdown-body h3 {
+    font-size: 22px;
+  }
+
+  .markdown-body h4 {
+    font-size: 18px;
+  }
+
+  .markdown-body th,
+  .markdown-body td {
+    padding: 6px 18px;
+  }
+
+  .markdown-body th {
+    border-bottom: #16a085 solid 3px;
+  }
+
+  .markdown-body td {
+    border-top: #1abc9c solid 1px;
+  }
+}

@@ -8,13 +8,13 @@
 }
 
 body {
-  width: 100vw;
-  color: #2c3e50;
+  width     : 100vw;
+  color     : #2c3e50;
+  overflow-x: hidden;
 }
 
 .main {
   width  : 100%;
-  margin : auto;
   padding: 28px;
 }
 
@@ -30,6 +30,6 @@ body {
   /* for desktops */
 
   .main {
-    width: 1080px;
+    padding: 40px Calc((100vw - 960px) / 2);
   }
 }

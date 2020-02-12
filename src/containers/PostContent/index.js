@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import ReactMarkdown from 'react-markdown'
 
-import './github-markdown.css'
+import './index.css'
 
 export default class PostContent extends PureComponent {
   render() {

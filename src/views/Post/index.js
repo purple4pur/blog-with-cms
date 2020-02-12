@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { PostContent } from 'containers'
 import { fetchPost } from 'redux/actions'
 
+import './index.css'
+
 class Post extends PureComponent {
   componentDidMount() {
     this.props.fetchPost(this.props.match.params.id, "readonly")
@@ -16,7 +18,16 @@ class Post extends PureComponent {
     } else {
       return (
         <>
-          <h1>{this.props.data.title}</h1>
+          <div className="title-info">
+            <h1>{this.props.data.title}</h1>
+            <span>
+              {this.props.data.time}
+            </span>
+            <span>
+              {this.props.data.author}
+            </span>
+          </div>
+
           <PostContent content={this.props.data.content} />
         </>
       )
