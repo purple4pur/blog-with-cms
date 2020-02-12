@@ -22,7 +22,7 @@ body {
   /* for tablets */
 
   .main {
-    padding: 40px 60px;
+    padding: 60px 60px;
   }
 }
 
@@ -30,6 +30,6 @@ body {
   /* for desktops */
 
   .main {
-    padding: 40px Calc((100vw - 960px) / 2);
+    padding: 60px Calc((100vw - 960px) / 2);
   }
 }
