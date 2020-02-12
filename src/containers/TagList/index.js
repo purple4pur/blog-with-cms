@@ -14,7 +14,7 @@ class TagList extends PureComponent {
       return <div>loading...</div>
 
     } else if (this.props.fetchError) {
-      return <div>获取数据失败</div>
+      return <div>暂无数据</div>
 
     } else {
       return (

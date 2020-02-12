@@ -53,9 +53,16 @@ export const updatePost = (token, typ, ttl, cntt, cateID) => (
   })
 )
 
-export const getPvtDft = (token, typ) => (
+export const getPvtDftList = (token, typ) => (
   ajax.post('/pvt_dft.php', {
     decoratedToken: token,
     type: typ
+  })
+)
+
+export const getPvtDftPost = (token, pid) => (
+  ajax.post('/pvt_dft_post.php', {
+    decoratedToken: token,
+    postID: pid
   })
 )

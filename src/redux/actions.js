@@ -8,7 +8,8 @@ import {
   getAuthorPost,
   verifyStatus,
   updatePost,
-  getPvtDft
+  getPvtDftList,
+  getPvtDftPost
 } from 'services'
 
 const startFetchPost = () => ({
@@ -24,9 +25,13 @@ const fetchPostFailed = () => ({
   type: actionTypes.FETCH_POST_FAILED
 })
 
-export const fetchPost = postID => dispatch => {
+export const fetchPost = (postID, type) => dispatch => {
   dispatch(startFetchPost())
-  getPost(postID)
+  let request = getPost(postID)
+  if (type === 'edit') {
+    request = getPvtDftPost(localStorage.getItem('purple4pur/blog:JWT'), postID)
+  }
+  request
     .then(resp => {
       if (resp.data.errCode) {
         console.log(resp.data.errMsg)
@@ -93,7 +98,7 @@ export const fetchList = (categoryID, tagID, authorID, type) => dispatch => {
 
   } else {
     if (localStorage.getItem('purple4pur/blog:JWT')) {
-      getPvtDft(localStorage.getItem('purple4pur/blog:JWT'), type)
+      getPvtDftList(localStorage.getItem('purple4pur/blog:JWT'), type)
         .then(resp => {
           if (resp.data.errCode) {
             console.log(resp.data.errMsg)
@@ -259,6 +264,14 @@ const addPostFailed = () => ({
   type: actionTypes.ADD_POST_FAILED
 })
 
+const addDraftSuccess = () => ({
+  type: actionTypes.ADD_DRAFT_SUCCESS
+})
+
+const addDraftFailed = () => ({
+  type: actionTypes.ADD_DRAFT_FAILED
+})
+
 const resetAddMsg = () => ({
   type: actionTypes.RESET_ADD_MSG
 })
@@ -288,40 +301,6 @@ export const addPost = (type, title, content, categoryID) => dispatch => {
     .catch(err => {
       console.log(err)
       dispatch(failed)
-      dispatch(setErrorMsg(7))
-    })
-    .finally(() => {
-      setTimeout(() => { dispatch(resetAddMsg()) }, 5000)
-    })
-}
-
-const addDraftSuccess = () => ({
-  type: actionTypes.ADD_DRAFT_SUCCESS
-})
-
-const addDraftFailed = () => ({
-  type: actionTypes.ADD_DRAFT_FAILED
-})
-
-export const addDraft = (title, content) => dispatch => {
-  dispatch(startAdd())
-  updatePost(localStorage.getItem('purple4pur/blog:JWT'), 'draft', title, content)
-    .then(resp => {
-      if (resp.data.status) {
-        dispatch(addDraftSuccess())
-      } else if (resp.data.errCode) {
-        console.log(resp.data.errMsg)
-        dispatch(addDraftFailed())
-        dispatch(setErrorMsg(resp.data.errCode))
-      } else {
-        console.log('Error: ' + resp.data)
-        dispatch(addDraftFailed())
-        dispatch(setErrorMsg(99))
-      }
-    })
-    .catch(err => {
-      console.log(err)
-      dispatch(addDraftFailed())
       dispatch(setErrorMsg(7))
     })
     .finally(() => {

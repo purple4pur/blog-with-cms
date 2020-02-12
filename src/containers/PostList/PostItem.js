@@ -12,7 +12,7 @@ export default class PostItem extends PureComponent {
     } else {
       return (
         <li>
-          <h3><Link to={'/newpost/' + this.props.id}>{this.props.title}</Link></h3>
+          <h3><Link to={'/admin/newpost/' + this.props.id}>{this.props.title}</Link></h3>
         </li>
       )
     }

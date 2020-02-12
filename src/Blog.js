@@ -24,15 +24,15 @@ class Blog extends Component {
         <Header />
         <main className="main">
           <Switch>
-            <Route component={Home} path="/" exact />
-            <Route component={Coding} path="/coding" exact />
-            <Route component={Creating} path="/creating" exact />
-            <Route component={Thoughts} path="/thoughts" exact />
-            <Route component={Tags} path="/tags/:tagID?" exact />
-            <Route component={Post} path="/post/:id" exact />
-            <Route component={About} path="/about" exact />
-            <Route component={Admin} path="/admin/:viewSelector?" exact />
-            <Route component={NotFound} path="/404" exact />
+            <Route exact path="/" component={Home} />
+            <Route exact path="/coding" component={Coding} />
+            <Route exact path="/creating" component={Creating} />
+            <Route exact path="/thoughts" component={Thoughts} />
+            <Route exact path="/tags/:tagID?" component={Tags} />
+            <Route exact path="/post/:id" component={Post} />
+            <Route exact path="/about" component={About} />
+            <Route exact path="/admin/:viewSelector?/:postID?" component={Admin} />
+            <Route exact path="/404" component={NotFound} />
             <Redirect to="/404" />
           </Switch>
         </main>

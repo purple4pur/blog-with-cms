@@ -59,7 +59,7 @@ class NewPost extends PureComponent {
             <input type="submit" value="发布" onClick={this.handleAddPost} />
           </div>
         </form>
-        {this.props.isLoading ? <div>发布中...</div> : null}
+        {this.props.isAdding ? <div>操作中...</div> : null}
       </>
     )
   }
@@ -88,7 +88,7 @@ class NewPost extends PureComponent {
 }
 
 const mapToProps = state => ({
-  isLoading: state.addPost.isLoading,
+  isAdding: state.addPost.isLoading,
   msg: state.addPost.msg
 })
 

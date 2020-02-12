@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { verifyToken, removeToken } from 'redux/actions'
+import { verifyToken, removeToken, fetchPost } from 'redux/actions'
 import { Login } from 'views'
 import AdminNav from './AdminNav'
 import Manage from './Manage'
@@ -24,6 +24,7 @@ class Admin extends PureComponent {
 
     this.state = {
       activeView: this.props.match.params.viewSelector,
+      postID: this.props.match.params.postID,
       isReadyToRedirect: false
     }
   }
@@ -31,6 +32,9 @@ class Admin extends PureComponent {
   componentDidMount() {
     document.title = title[this.state.activeView] + " - CMS | Purple4pur's Blog"
     this.props.verifyToken()
+    if (this.state.postID) {
+      this.props.fetchPost(this.state.postID, 'edit')
+    }
     this.setState({ isReadyToRedirect: true })
   }
 
@@ -48,11 +52,11 @@ class Admin extends PureComponent {
           <input type="button" value="退出" onClick={this.handleRmToken} />
           <AdminNav view={this.state.activeView} />
           <Switch>
-            <Redirect from="/admin" to="/admin/manage" exact />
-            <Route component={Manage} path="/admin/manage" exact />
-            <Route component={NewPost} path="/admin/newpost" exact />
-            <Route component={Draft} path="/admin/draft" exact />
-            <Route component={Private} path="/admin/private" exact />
+            <Redirect exact from="/admin" to="/admin/manage" />
+            <Route exact path="/admin/manage" component={Manage} />
+            <Route exact path="/admin/newpost/:postID?" render={props => <NewPost {...props} />} />
+            <Route exact path="/admin/draft" component={Draft} />
+            <Route exact path="/admin/private" component={Private} />
             <Redirect to="/404" />
           </Switch>
         </>
@@ -72,9 +76,10 @@ const mapToProps = state => ({
   isLoading: state.adminStatus.isLoading,
   isLoggedIn: state.adminStatus.isLoggedIn,
   activeUser: state.adminStatus.activeUser,
-  activeUserID: state.adminStatus.activeUserID
+  activeUserID: state.adminStatus.activeUserID,
+  oriData: state.post.data
 })
 
 export default connect(
-  mapToProps, { verifyToken, removeToken }
+  mapToProps, { verifyToken, removeToken, fetchPost }
 )(Admin)

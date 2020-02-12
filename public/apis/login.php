@@ -29,7 +29,6 @@ if (isset($_POST["decoratedToken"])) {
             "errCode" => 3,
             "errMsg" => "Error: No password.",
         ], JSON_UNESCAPED_UNICODE));
-
     }
 
     $name = $_POST["username"];

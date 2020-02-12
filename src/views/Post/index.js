@@ -6,7 +6,7 @@ import { fetchPost } from 'redux/actions'
 
 class Post extends PureComponent {
   componentDidMount() {
-    this.props.fetchPost(this.props.match.params.id)
+    this.props.fetchPost(this.props.match.params.id, "readonly")
   }
 
   render() {
