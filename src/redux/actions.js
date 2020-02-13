@@ -304,6 +304,6 @@ export const addPost = (type, title, content, categoryID) => dispatch => {
       dispatch(setErrorMsg(7))
     })
     .finally(() => {
-      setTimeout(() => { dispatch(resetAddMsg()) }, 5000)
+      setTimeout(() => { dispatch(resetAddMsg()) }, 3000)
     })
 }

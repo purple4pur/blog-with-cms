@@ -3,7 +3,7 @@ require_once './consts/dbConst.php';
 
 header('Access-Control-Allow-Origin: *');
 
-$authorID = isset($_GET["authorID"]) ? $_GET["authorID"] : "0";
+$authorID = isset($_GET["authorID"]) ? $_GET["authorID"] : 0;
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
@@ -13,31 +13,86 @@ if ($conn->connect_error) {
     ], JSON_UNESCAPED_UNICODE));
 }
 
-$sql_get_info_pre = "SELECT post_info.post_id AS id, post.time, post.title, post.content, author.name AS author FROM post_info, post, author WHERE post_info.author_id=";
-$sql_get_info_post = " AND post_info.post_id=post.id AND post_info.author_id=author.id AND post_info.plc_pvt_dft=1 ORDER BY post.time DESC";
-$sql_get_tag_pre = "SELECT tag.id, tag.name FROM post_tag, tag WHERE post_tag.post_id=";
-$sql_get_tag_post = " AND tag.id=post_tag.tag_id";
+$sql_get_info = "SELECT
+                    post_info.post_id AS id,
+                    post.time,
+                    post.title,
+                    post.content,
+                    author.name AS author
+                FROM post_info, post, author
+                WHERE
+                    post_info.author_id=? AND
+                    post_info.post_id=post.id AND
+                    post_info.author_id=author.id AND
+                    post_info.plc_pvt_dft=1
+                ORDER BY post.time DESC";
+$sql_get_tag = "SELECT
+                    tag.id,
+                    tag.name
+                FROM post_tag, tag
+                WHERE
+                    post_tag.post_id=? AND
+                    tag.id=post_tag.tag_id";
 
-$result_get_info = $conn->query($sql_get_info_pre . '"' . $authorID . '"' . $sql_get_info_post);
-if ($result_get_info->num_rows === 0) {
+if ($stmt = $conn->prepare($sql_get_info)) {
+    $stmt->bind_param("i", $authorID);
+    $stmt->execute();
+    $stmt->bind_result($id, $time, $title, $content, $author);
+    $result = [];
+    while ($stmt->fetch()) {
+        $row = [
+            "id" => $id,
+            "time" => $time,
+            "title" => $title,
+            "content" => $content,
+            "author" => $author,
+        ];
+
+        array_push($result, $row);
+    }
+
+    if ($stmt->num_rows === 0) {
+        $stmt->close();
+        $conn->close();
+        die(json_encode([
+            "errCode" => 8,
+            "errMsg" => "Error: No result.",
+        ], JSON_UNESCAPED_UNICODE));
+    }
+    $cnt = $stmt->num_rows;
+    $stmt->close();
+
+} else {
     die(json_encode([
-        "errCode" => 8,
-        "errMsg" => "Error: No result.",
+        "errCode" => 1,
+        "errMsg" => "Error: " . $conn->connect_error,
     ], JSON_UNESCAPED_UNICODE));
 }
 
-$arr = [];
-while ($row = $result_get_info->fetch_assoc()) {
-    $result_get_tag = $conn->query($sql_get_tag_pre . '"' . $row["id"] . '"' . $sql_get_tag_post);
-    $tags = [];
-    while ($tag = $result_get_tag->fetch_assoc()) {
-        array_push($tags, $tag);
-    }
+for ($i = 0; $i < $cnt; $i++) {
+    if ($st = $conn->prepare($sql_get_tag)) {
+        $st->bind_param("i", $result[$i]["id"]);
+        $st->execute();
+        $st->bind_result($id, $name);
+        $tags = [];
+        while ($st->fetch()) {
+            $tag = [
+                "id" => $id,
+                "name" => $name,
+            ];
+            array_push($tags, $tag);
+        }
+        $st->close();
+        $result[$i]["tags"] = $tags;
 
-    $row["tags"] = $tags;
-    array_push($arr, $row);
+    } else {
+        die(json_encode([
+            "errCode" => 1,
+            "errMsg" => "Error: " . $conn->connect_error,
+        ], JSON_UNESCAPED_UNICODE));
+    }
 }
 
-echo json_encode($arr, JSON_UNESCAPED_UNICODE);
-
 $conn->close();
+
+echo json_encode($result, JSON_UNESCAPED_UNICODE);

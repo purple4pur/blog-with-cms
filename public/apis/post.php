@@ -3,7 +3,7 @@ require_once './consts/dbConst.php';
 
 header('Access-Control-Allow-Origin: *');
 
-$postID = isset($_GET["postID"]) ? $_GET["postID"] : "0";
+$postID = isset($_GET["postID"]) ? $_GET["postID"] : 0;
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
@@ -58,27 +58,27 @@ if ($stmt = $conn->prepare($sql_get_info)) {
     }
     $stmt->close();
 
-    if ($stmt = $conn->prepare($sql_get_tag)) {
-        $stmt->bind_param("i", $postID);
-        $stmt->execute();
-        $stmt->bind_result($id, $name);
-        $tags = [];
-        while ($stmt->fetch()) {
-            $tag = [
-                "id" => $id,
-                "name" => $name,
-            ];
-            array_push($tags, $tag);
-        }
-        $stmt->close();
-        $result["tags"] = $tags;
-    }
-
 } else {
     die(json_encode([
         "errCode" => 1,
         "errMsg" => "Error: " . $conn->connect_error,
     ], JSON_UNESCAPED_UNICODE));
+}
+
+if ($stmt = $conn->prepare($sql_get_tag)) {
+    $stmt->bind_param("i", $postID);
+    $stmt->execute();
+    $stmt->bind_result($id, $name);
+    $tags = [];
+    while ($stmt->fetch()) {
+        $tag = [
+            "id" => $id,
+            "name" => $name,
+        ];
+        array_push($tags, $tag);
+    }
+    $stmt->close();
+    $result["tags"] = $tags;
 }
 
 $conn->close();

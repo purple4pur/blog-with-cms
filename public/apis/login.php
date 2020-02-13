@@ -42,15 +42,20 @@ if (isset($_POST["decoratedToken"])) {
         ], JSON_UNESCAPED_UNICODE));
     }
 
-    $sql_get_user_pre = "SELECT password,id,name FROM author WHERE username=";
-    $sql_get_user_post = " LIMIT 0,1";
+    $sql_get_user = "SELECT password, id, name FROM author WHERE username=? LIMIT 0,1";
 
-    $result_get_user = $conn->query($sql_get_user_pre . '"' . $name . '"' . $sql_get_user_post);
-
-    $result_get_user = $result_get_user->fetch_assoc();
-    $savedPwd = $result_get_user["password"];
-    $name = $result_get_user["name"];
-    $id = $result_get_user["id"];
+    if ($stmt = $conn->prepare($sql_get_user)) {
+        $stmt->bind_param("s", $name);
+        $stmt->execute();
+        $stmt->bind_result($savedPwd, $id, $name);
+        $stmt->fetch();
+        $stmt->close();
+    } else {
+        die(json_encode([
+            "errCode" => 1,
+            "errMsg" => "Error: " . $conn->connect_error,
+        ], JSON_UNESCAPED_UNICODE));
+    }
 
     $conn->close();
 
@@ -78,5 +83,4 @@ if (isset($_POST["decoratedToken"])) {
     $token = JWT::encode($payload, $privateKey);
 
     header('Authorization: Bearer ' . $token);
-    echo "";
 }
