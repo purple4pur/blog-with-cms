@@ -23,6 +23,7 @@ if ($conn->connect_error) {
 $sql_get_info = "SELECT
                     post_info.post_id AS id,
                     post.time,
+                    post_info.category_id,
                     post.title,
                     post.content,
                     author.name AS author
@@ -43,12 +44,13 @@ $sql_get_tag = "SELECT
 if ($stmt = $conn->prepare($sql_get_info)) {
     $stmt->bind_param("ii", $postID, $authorID);
     $stmt->execute();
-    $stmt->bind_result($id, $time, $title, $content, $author);
+    $stmt->bind_result($id, $time, $categoryID, $title, $content, $author);
     $result = [];
     while ($stmt->fetch()) {
         $result = [
             "id" => $id,
             "time" => $time,
+            "category" => $categoryID,
             "title" => $title,
             "content" => $content,
             "author" => $author,

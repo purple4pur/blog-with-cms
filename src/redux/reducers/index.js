@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import { reducer as reduxFormReducer } from 'redux-form';
 
 import post from './post'
 import postList from './postList'
@@ -13,5 +14,6 @@ export default combineReducers({
   tagList,
   adminStatus,
   errorMsg,
-  addPost
+  addPost,
+  form: reduxFormReducer
 })

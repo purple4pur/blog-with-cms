@@ -54,7 +54,7 @@ class Admin extends PureComponent {
           <Switch>
             <Redirect exact from="/admin" to="/admin/manage" />
             <Route exact path="/admin/manage" component={Manage} />
-            <Route exact path="/admin/newpost/:postID?" render={props => <NewPost {...props} />} />
+            <Route exact path="/admin/newpost/:postID?" render={props => <NewPost {...props} {...this.props.oriData} />} />
             <Route exact path="/admin/draft" component={Draft} />
             <Route exact path="/admin/private" component={Private} />
             <Redirect to="/404" />

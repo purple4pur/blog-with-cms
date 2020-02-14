@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+import { Field, reduxForm } from 'redux-form';
 
 import { PostContent } from 'containers'
 import { addPost } from 'redux/actions'
@@ -9,6 +10,7 @@ class NewPost extends PureComponent {
     super(props)
 
     this.state = {
+      id: 0,
       title: '',
       content: '',
       category: 1,
@@ -16,28 +18,39 @@ class NewPost extends PureComponent {
     }
   }
 
+  static getDerivedStateFromProps(props, state) {
+    if (props.match.params.postID && props.initialValues && state.id !== props.initialValues.id) {
+      console.log(1)
+      return props.initialValues
+    } else {
+      console.log(2)
+      return null
+    }
+  }
+
   render() {
+    console.log(this.state)
     return (
       <>
         <form>
           <div>
             <span>标题：</span>
-            <input type="text" name="title" value={this.state.title} onChange={this.updateTitle} />
+            <Field component="input" type="text" name="title" value={this.state.title} onChange={this.updateTitle} />
           </div>
 
           <div>
             <span>栏目：</span>
             <ul>
               <li>
-                <input type="radio" name="category" id="coding" value="1" defaultChecked onChange={this.updateCategory} />
+                <Field component="input" type="radio" name="category" id="coding" value="1" checked={this.state.category === 1} onChange={this.updateCategory} />
                 <label htmlFor="coding">代码</label>
               </li>
               <li>
-                <input type="radio" name="category" id="creating" value="2" onChange={this.updateCategory} />
+                <Field component="input" type="radio" name="category" id="creating" value="2" checked={this.state.category === 2} onChange={this.updateCategory} />
                 <label htmlFor="creating">创作</label>
               </li>
               <li>
-                <input type="radio" name="category" id="thoughts" value="3" onChange={this.updateCategory} />
+                <Field component="input" type="radio" name="category" id="thoughts" value="3" checked={this.state.category === 3} onChange={this.updateCategory} />
                 <label htmlFor="thoughts">杂谈</label>
               </li>
             </ul>
@@ -45,7 +58,7 @@ class NewPost extends PureComponent {
 
           <div>
             <span>正文：</span>
-            <textarea name="content" cols="50" rows="10" value={this.state.content} onChange={this.updateContent} />
+            <Field component="textarea" name="content" cols="50" rows="10" value={this.state.content} onChange={this.updateContent} />
           </div>
 
           <div>
@@ -87,9 +100,15 @@ class NewPost extends PureComponent {
   }
 }
 
+NewPost = reduxForm({
+  form: 'editPost',
+  enableReinitialize: true
+})(NewPost)
+
 const mapToProps = state => ({
   isAdding: state.addPost.isLoading,
-  msg: state.addPost.msg
+  msg: state.addPost.msg,
+  initialValues: state.post.data
 })
 
 export default connect(
