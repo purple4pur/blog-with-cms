@@ -15,6 +15,27 @@
   margin-right: 12px;
 }
 
+.title-info ul {
+  list-style-type: none;
+  margin-top     : 4px;
+}
+
+.title-info ul li {
+  margin-right: 8px;
+  font-size   : 15px;
+  color       : #95a5a6;
+  float       : left;
+}
+
+.title-info ul li a {
+  color     : #95a5a6;
+  transition: .3s;
+}
+
+.title-info ul li a:hover {
+  color: #34495e;
+}
+
 @media only screen and (min-width: 600px) {
   /* for tablets and desktops */
 
@@ -29,6 +50,14 @@
   }
 
   .title-info span {
+    margin-right: 4px;
     padding-left: 12px;
+  }
+
+  .title-info ul {
+    display       : inline-block;
+    margin-top    : 0;
+    padding-left  : 10px;
+    vertical-align: bottom;
   }
 }

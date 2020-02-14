@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import { PostContent } from 'containers'
 import { fetchPost } from 'redux/actions'
@@ -26,8 +27,18 @@ class Post extends PureComponent {
             <span>
               {this.props.data.author}
             </span>
+            {
+              this.props.data.tags
+                ? <ul>
+                  {this.props.data.tags.map(tag => (
+                    <li key={tag.id}>
+                      <Link to={'/tags/' + tag.id}>#{tag.name}</Link>
+                    </li>
+                  ))}
+                </ul>
+                : null
+            }
           </div>
-
           <PostContent content={this.props.data.content} />
         </>
       )

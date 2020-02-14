@@ -2,6 +2,11 @@
 
 > 此文档只记录网页上「看得见」的变化，代码变化请查看 [commit message](https://github.com/purple4pur/blog-with-cms/commits/master)。
 
+### 2020 / 02 / 15
+
+`+` 文章详情页显示标签<br />
+`*` 修改标签页的样式
+
 ### 2020 / 02 / 14
 
 `+` 增加栏目和标签页的样式
