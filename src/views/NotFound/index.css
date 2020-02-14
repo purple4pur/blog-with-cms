@@ -5,11 +5,11 @@
 }
 
 .notfound-txt {
-  text-align : center;
-  position   : absolute;
-  top        : 50%;
-  left       : 50%;
-  transform  : translate(-50%, -50%);
+  text-align: center;
+  position  : absolute;
+  top       : 50%;
+  left      : 50%;
+  transform : translate(-50%, -50%);
 }
 
 .notfound-txt h1 {
@@ -17,6 +17,7 @@
 }
 
 .notfound-txt p {
+  min-width : 180px;
   font-size : 20px;
   margin-top: 8px;
 }

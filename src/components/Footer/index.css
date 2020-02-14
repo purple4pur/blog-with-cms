@@ -2,6 +2,7 @@
   text-align        : center;
   font-size         : 14px;
   color             : #bdc3c7;
+  margin-bottom     : 14px;
   display           : grid;
   grid-template-rows: 1fr 1fr;
 }

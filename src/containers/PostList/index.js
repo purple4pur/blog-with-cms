@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import { fetchList } from 'redux/actions'
 import PostItem from './PostItem'
+import './index.css'
 
 class PostList extends PureComponent {
   constructor(props) {
@@ -35,7 +36,7 @@ class PostList extends PureComponent {
 
     } else {
       return (
-        <ul>
+        <ul className="post-list">
           {
             this.props.list.map(item => (
               <PostItem key={item.id} {...item} isPublic={this.state.isPublic} />

@@ -1,0 +1,20 @@
+.tags-header h1 {
+  font-size: 28px;
+  padding  : 0 8px;
+}
+
+.tags-header p {
+  font-size     : 16px;
+  margin        : 12px 0 24px;
+  padding       : 0 8px;
+  padding-bottom: 8px;
+  border-bottom : #f39c12 solid 2px;
+}
+
+@media only screen and (min-width: 600px) {
+  /* for tablets and desktops */
+
+  .tags-header h1 {
+    font-size: 32px;
+  }
+}

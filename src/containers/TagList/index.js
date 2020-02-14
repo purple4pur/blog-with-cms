@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import TagItem from './TagItem'
 import { fetchTags } from 'redux/actions'
+import './index.css'
 
 class TagList extends PureComponent {
   componentDidMount() {
@@ -18,7 +19,7 @@ class TagList extends PureComponent {
 
     } else {
       return (
-        <ul>
+        <ul className="tag-list">
           {
             this.props.tags.map(tag => (
               <TagItem key={tag.id} {...tag} />

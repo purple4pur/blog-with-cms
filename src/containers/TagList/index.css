@@ -1,0 +1,18 @@
+.tag-list {
+  list-style-type: none;
+  padding        : 0 8px;
+}
+
+.tag-list>li {
+  font-size    : 16px;
+  margin-bottom: 6px;
+  margin-right : 6px;
+  padding      : 6px 12px;
+  background   : #2ecc71;
+  border-radius: 80px;
+  float        : left;
+}
+
+.tag-list>li>a {
+  color: white;
+}

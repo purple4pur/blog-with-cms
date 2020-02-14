@@ -14,8 +14,9 @@ body {
 }
 
 .main {
-  width  : 100%;
-  padding: 28px;
+  width     : 100%;
+  min-height: 70vh;
+  padding   : 28px;
 }
 
 @media only screen and (min-width: 600px) {

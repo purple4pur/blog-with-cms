@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 
 import { TagList, PostList } from 'containers'
+import './index.css'
 
 export default class Tags extends PureComponent {
   componentDidMount() {
@@ -12,7 +13,15 @@ export default class Tags extends PureComponent {
       return <PostList tagID={this.props.match.params.tagID} />
 
     } else {
-      return <TagList />
+      return (
+        <>
+          <div className="tags-header">
+            <h1>标签</h1>
+            <p></p>
+          </div>
+          <TagList />
+        </>
+      )
     }
   }
 }

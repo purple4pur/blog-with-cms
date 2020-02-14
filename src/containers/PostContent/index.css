@@ -5,9 +5,10 @@
 }
 
 .markdown-body blockquote p {
-  padding-left: 8px;
-  color       : #95a5a6;
-  border-left : #95a5a6 solid 4px;
+  padding-left : 8px;
+  padding-right: 4px;
+  color        : #95a5a6;
+  border-left  : #95a5a6 solid 4px;
 }
 
 .markdown-body h1 {
