@@ -8,8 +8,8 @@ export default class About extends PureComponent {
   render() {
     return (
       <>
-        <h1>关于</h1>
-        <span>项目地址：<a href="https://github.com/purple4pur/blog-with-cms" target="_blank" rel="noopener noreferrer">GitHub</a></span>
+        <h1>待完善的关于</h1>
+        <span>此博客开源，项目地址：<a href="https://github.com/purple4pur/blog-with-cms" target="_blank" rel="noopener noreferrer">GitHub</a></span>
       </>
     )
   }
