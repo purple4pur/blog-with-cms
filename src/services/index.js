@@ -19,8 +19,10 @@ export const getCategoryList = id => (
   })
 )
 
-export const getTagList = () => (
-  ajax.get('/tags.php')
+export const getTagList = tpy => (
+  ajax.get('/tags.php', {
+    params: { type: tpy }
+  })
 )
 
 export const getTagPost = id => (
@@ -43,13 +45,14 @@ export const verifyStatus = (user, pwd, token) => (
   })
 )
 
-export const updatePost = (token, typ, ttl, cntt, cateID) => (
+export const updatePost = (token, typ, ttl, cntt, cateID, tgs) => (
   ajax.post('/update_post.php', {
     decoratedToken: token,
     type: typ,
     title: ttl,
     content: cntt,
-    categoryID: cateID
+    categoryID: cateID,
+    tags: tgs
   })
 )
 

@@ -114,21 +114,30 @@ if (isset($_GET["tagID"])) {
     }
 
     $result = [];
-    while ($row = $result_get_all_tag->fetch_assoc()) {
-        if ($stmt = $conn->prepare($sql_check_valid_tag)) {
-            $stmt->bind_param("i", $row["id"]);
-            $stmt->execute();
-            while ($stmt->fetch());
-            if ($stmt->num_rows > 0) {
+    switch ($_GET["type"]) {
+        case "all":
+            while ($row = $result_get_all_tag->fetch_assoc()) {
                 array_push($result, $row);
             }
-            $stmt->close();
-        } else {
-            die(json_encode([
-                "errCode" => 1,
-                "errMsg" => "Error: " . $conn->connect_error,
-            ], JSON_UNESCAPED_UNICODE));
-        }
+            break;
+        case "valid":
+        default:
+            while ($row = $result_get_all_tag->fetch_assoc()) {
+                if ($stmt = $conn->prepare($sql_check_valid_tag)) {
+                    $stmt->bind_param("i", $row["id"]);
+                    $stmt->execute();
+                    while ($stmt->fetch());
+                    if ($stmt->num_rows > 0) {
+                        array_push($result, $row);
+                    }
+                    $stmt->close();
+                } else {
+                    die(json_encode([
+                        "errCode" => 1,
+                        "errMsg" => "Error: " . $conn->connect_error,
+                    ], JSON_UNESCAPED_UNICODE));
+                }
+            }
     }
 }
 

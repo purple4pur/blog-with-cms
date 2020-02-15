@@ -20,7 +20,7 @@ class NewPost extends PureComponent {
   }
 
   componentDidMount() {
-    this.props.fetchTags()
+    this.props.fetchTags('all')
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -90,11 +90,11 @@ class NewPost extends PureComponent {
               <span>正文预览：</span>
               <PostContent content={this.state.content} />
             </div>
-            <div>
-              <span>{this.props.msg}</span>
-              <input type="submit" value="保存到草稿箱" onClick={this.handleSave} />
-              <input type="submit" value="发布" onClick={this.handleAddPost} />
-            </div>
+          </div>
+          <div className="edit-post-btn">
+            <span>{this.props.msg}</span>
+            {/* <input type="submit" value="保存到草稿箱" onClick={this.handleSave} /> */}
+            <input type="submit" value="发布" onClick={this.handleAddPost} />
           </div>
         </form>
         {this.props.isAdding ? <div>操作中...</div> : null}
@@ -119,7 +119,7 @@ class NewPost extends PureComponent {
       tagName = e
     }
     if (/\s+/.test(tagName)) return
-    let id = -this.state.tags.length
+    let id = -Date.now()
     for (let i in this.state.tags) {
       if (this.state.tags[i].name === tagName) {
         document.getElementById('tag-input').value = ""
@@ -168,12 +168,12 @@ class NewPost extends PureComponent {
 
   handleSave = e => {
     e.preventDefault()
-    this.props.addPost('draft', this.state.title, this.state.content, this.state.category)
+    this.props.addPost('draft', this.state.title, this.state.content, this.state.category, this.state.tags)
   }
 
   handleAddPost = e => {
     e.preventDefault()
-    this.props.addPost('post', this.state.title, this.state.content, this.state.category)
+    this.props.addPost('post', this.state.title, this.state.content, this.state.category, this.state.tags)
   }
 }
 

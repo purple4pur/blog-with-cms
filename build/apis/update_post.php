@@ -38,7 +38,7 @@ if (!isset($_POST["content"]) || $_POST["content"] === "") {
         "errMsg" => "Error: No content.",
     ], JSON_UNESCAPED_UNICODE));
 }
-if (!isset($_POST["categoryID"]) || !in_array($_POST["categoryID"], $cateList)) {
+if (!isset($_POST["categoryID"]) || $_POST["content"] === "" || !in_array($_POST["categoryID"], $cateList)) {
     die(json_encode([
         "errCode" => 12,
         "errMsg" => "Error: Undefined category.",
@@ -77,12 +77,15 @@ $sql_add_info = "INSERT INTO post_info (
                     ?,
                     ?
                 )";
+$sql_get_all_tag = "SELECT id, name FROM tag ORDER BY name";
+$sql_add_new_tag = "INSERT INTO tag (name) VALUE (?)";
+$sql_add_tag_info = "INSERT INTO post_tag (post_id, tag_id) VALUE (?, ?)";
 
 if ($stmt = $conn->prepare($sql_add_post)) {
     $time = $_SERVER["REQUEST_TIME"];
     $stmt->bind_param("iss", $_SERVER["REQUEST_TIME"], $title, $content);
     $stmt->execute();
-    $id = $stmt->insert_id;
+    $postID = $stmt->insert_id;
     $stmt->close();
 } else {
     die(json_encode([
@@ -92,8 +95,37 @@ if ($stmt = $conn->prepare($sql_add_post)) {
 }
 
 if ($stmt = $conn->prepare($sql_add_info)) {
-    $stmt->bind_param("iiii", $id, $authorID, $categoryID, $type);
+    $stmt->bind_param("iiii", $postID, $authorID, $categoryID, $type);
     $stmt->execute();
+    $stmt->close();
+} else {
+    die(json_encode([
+        "errCode" => 1,
+        "errMsg" => "Error: " . $conn->connect_error,
+    ], JSON_UNESCAPED_UNICODE));
+}
+
+if ($stmt = $conn->prepare($sql_add_new_tag)) {
+    for ($i = 0; $i < count($_POST["tags"]); $i++) {
+        if ($_POST["tags"][$i]["id"] <= 0) {
+            $stmt->bind_param("s", $_POST["tags"][$i]["name"]);
+            $stmt->execute();
+            $_POST["tags"][$i]["id"] = $stmt->insert_id;
+        }
+    }
+    $stmt->close();
+} else {
+    die(json_encode([
+        "errCode" => 1,
+        "errMsg" => "Error: " . $conn->connect_error,
+    ], JSON_UNESCAPED_UNICODE));
+}
+
+if ($stmt = $conn->prepare($sql_add_tag_info)) {
+    for ($i = 0; $i < count($_POST["tags"]); $i++) {
+        $stmt->bind_param("ii", $postID, $_POST["tags"][$i]["id"]);
+        $stmt->execute();
+    }
     $stmt->close();
 } else {
     die(json_encode([

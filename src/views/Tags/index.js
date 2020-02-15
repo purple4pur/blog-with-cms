@@ -20,7 +20,7 @@ class Tags extends PureComponent {
 
   static getDerivedStateFromProps(props, state) {
     if (props.match.params.tagID && state.tagName === '') {
-      props.fetchTags()
+      props.fetchTags('valid')
       for (let i in props.tags) {
         if (props.tags[i].id === props.match.params.tagID) {
           return { tagName: props.tags[i].name }

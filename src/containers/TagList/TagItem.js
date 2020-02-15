@@ -5,7 +5,7 @@ export default class TagItem extends PureComponent {
   render() {
     return (
       <li>
-        <Link to={'/tags/' + this.props.id}><span>{this.props.name}</span></Link>
+        <span><Link to={'/tags/' + this.props.id}>{this.props.name}</Link></span>
       </li>
     )
   }

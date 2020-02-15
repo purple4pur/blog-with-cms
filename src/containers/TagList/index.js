@@ -7,7 +7,7 @@ import './index.css'
 
 class TagList extends PureComponent {
   componentDidMount() {
-    this.props.fetchTags()
+    this.props.fetchTags('valid')
   }
 
   render() {

@@ -137,9 +137,9 @@ const fetchTagsFailed = () => ({
   type: actionTypes.FETCH_TAGS_FAILED
 })
 
-export const fetchTags = () => dispatch => {
+export const fetchTags = type => dispatch => {
   dispatch(startFetchTags())
-  getTagList()
+  getTagList(type)
     .then(resp => {
       if (resp.data[0].id) {
         dispatch(fetchTagsSuccess(resp.data))
@@ -276,7 +276,7 @@ const resetAddMsg = () => ({
   type: actionTypes.RESET_ADD_MSG
 })
 
-export const addPost = (type, title, content, categoryID) => dispatch => {
+export const addPost = (type, title, content, categoryID, tags) => dispatch => {
   dispatch(startAdd())
   let success = addPostSuccess()
   let failed = addPostFailed()
@@ -284,8 +284,9 @@ export const addPost = (type, title, content, categoryID) => dispatch => {
     success = addDraftSuccess()
     failed = addDraftFailed()
   }
-  updatePost(localStorage.getItem('purple4pur/blog:JWT'), type, title, content, categoryID)
+  updatePost(localStorage.getItem('purple4pur/blog:JWT'), type, title, content, categoryID, tags)
     .then(resp => {
+      console.log(resp.data)
       if (resp.data.status) {
         dispatch(success)
       } else if (resp.data.errCode) {
