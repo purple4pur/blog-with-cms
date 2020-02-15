@@ -33,6 +33,14 @@ $sql_get_tag = "SELECT
                     post_tag.post_id=? AND
                     tag.id=post_tag.tag_id";
 $sql_get_all_tag = "SELECT id, name FROM tag ORDER BY name";
+$sql_check_valid_tag = "SELECT
+                            post_tag.post_id
+                        FROM
+                            post_tag, post_info
+                        WHERE
+                            post_tag.tag_id=? AND
+                            post_info.post_id=post_tag.post_id AND
+                            post_info.plc_pvt_dft=1";
 
 if (isset($_GET["tagID"])) {
     $tagID = $_GET["tagID"];
@@ -105,7 +113,20 @@ if (isset($_GET["tagID"])) {
     }
     $result = [];
     while ($row = $result_get_all_tag->fetch_assoc()) {
-        array_push($result, $row);
+        if ($stmt = $conn->prepare($sql_check_valid_tag)) {
+            $stmt->bind_param("i", $row["id"]);
+            $stmt->execute();
+            while ($stmt->fetch());
+            if ($stmt->num_rows > 0) {
+                array_push($result, $row);
+            }
+            $stmt->close();
+        } else {
+            die(json_encode([
+                "errCode" => 1,
+                "errMsg" => "Error: " . $conn->connect_error,
+            ], JSON_UNESCAPED_UNICODE));
+        }
     }
 }
 
