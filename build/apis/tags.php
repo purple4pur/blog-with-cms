@@ -103,6 +103,7 @@ if (isset($_GET["tagID"])) {
             ], JSON_UNESCAPED_UNICODE));
         }
     }
+
 } else {
     $result_get_all_tag = $conn->query($sql_get_all_tag);
     if ($result_get_all_tag->num_rows === 0) {
@@ -111,6 +112,7 @@ if (isset($_GET["tagID"])) {
             "errMsg" => "Error: No result.",
         ], JSON_UNESCAPED_UNICODE));
     }
+
     $result = [];
     while ($row = $result_get_all_tag->fetch_assoc()) {
         if ($stmt = $conn->prepare($sql_check_valid_tag)) {

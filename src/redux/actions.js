@@ -9,7 +9,7 @@ import {
   verifyStatus,
   updatePost,
   getPvtDftList,
-  getPvtDftPost
+  getOriPost
 } from 'services'
 
 const startFetchPost = () => ({
@@ -29,7 +29,7 @@ export const fetchPost = (postID, type) => dispatch => {
   dispatch(startFetchPost())
   let request = getPost(postID)
   if (type === 'edit') {
-    request = getPvtDftPost(localStorage.getItem('purple4pur/blog:JWT'), postID)
+    request = getOriPost(localStorage.getItem('purple4pur/blog:JWT'), postID)
   }
   request
     .then(resp => {

@@ -60,8 +60,8 @@ export const getPvtDftList = (token, typ) => (
   })
 )
 
-export const getPvtDftPost = (token, pid) => (
-  ajax.post('/pvt_dft_post.php', {
+export const getOriPost = (token, pid) => (
+  ajax.post('/edit_post.php', {
     decoratedToken: token,
     postID: pid
   })
