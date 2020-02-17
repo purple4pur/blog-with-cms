@@ -14,24 +14,27 @@
 
 ## 技术栈
 
-- 前端
-  - 框架
-    - [React](https://reactjs.org/)：流行的前端框架
-  - 路由
-    - [react-router-dom](https://reacttraining.com/react-router/web)：react 搭配的路由 dom 组件
-  - 数据管理
-    - [redux](https://redux.js.org/)：统一管理前端的所有数据
-    - [react-redux](https://react-redux.js.org/)：利用 react 的 content 特性优化 redux 在 react 框架中的体验
-    - [redux-thunk](https://github.com/reduxjs/redux-thunk)：redux 官方的 middleware，功能同 redux-saga
-  - 网络请求
-    - [axios](https://github.com/axios/axios)：常用 http 请求库
-  - md 内容渲染
-    - [react-markdown](https://github.com/rexxars/react-markdown)：markdown 源文本渲染为组件
-- 后端
-  - 服务器
-    - [php](https://www.php.net/)：需要的功能不复杂，再说了别的我也不会……
-  - 数据库
-    - [MariaDB](https://mariadb.org/)：MySQL 的一个变体
+### 前端
+
+- 框架
+  - [React](https://reactjs.org/)：流行的前端框架
+- 路由
+  - [react-router-dom](https://reacttraining.com/react-router/web)：react 搭配的路由 dom 组件
+- 数据管理
+  - [redux](https://redux.js.org/)：统一管理前端的所有数据
+  - [react-redux](https://react-redux.js.org/)：利用 react 的 content 特性优化 redux 在 react 框架中的体验
+  - [redux-thunk](https://github.com/reduxjs/redux-thunk)：redux 官方的 middleware，功能同 redux-saga
+- 网络请求
+  - [axios](https://github.com/axios/axios)：常用 http 请求库
+- md 内容渲染
+  - [react-markdown](https://github.com/rexxars/react-markdown)：markdown 源文本渲染为组件
+
+### 后端
+
+- 服务器
+  - [php](https://www.php.net/)：需要的功能不复杂，再说了别的我也不会……
+- 数据库
+  - [MariaDB](https://mariadb.org/)：MySQL 的一个变体
 
 当然由于博客还在搭建中，可能用的技术还会更改，我会及时更新的。
 

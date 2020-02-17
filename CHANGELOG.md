@@ -2,6 +2,10 @@
 
 > 此文档只记录网页上「看得见」的变化，代码变化请查看 [commit message](https://github.com/purple4pur/blog-with-cms/commits/master)。
 
+### 2020 / 02 / 17
+
+`+` 文章发布页增加部分样式
+
 ### 2020 / 02 / 15
 
 *大声宣布今天博客终于「能用」了！*

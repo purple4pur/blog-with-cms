@@ -6,7 +6,8 @@ export default class Draft extends PureComponent {
   render() {
     return (
       <>
-        <PostList type="draft" />
+        <div>待开发的功能</div>
+        {/* <PostList type="draft" /> */}
       </>
     )
   }

@@ -6,7 +6,8 @@ export default class Private extends PureComponent {
   render() {
     return (
       <>
-        <PostList type="private" />
+        <div>待开发的功能</div>
+        {/* <PostList type="private" /> */}
       </>
     )
   }

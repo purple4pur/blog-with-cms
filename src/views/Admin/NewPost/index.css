@@ -1,0 +1,95 @@
+.edit-post-info>div {
+  min-height: 30px;
+}
+
+.edit-post-info>div>span {
+  margin-right: 8px;
+  font-size   : 16px;
+  font-weight : 600;
+  color       : #2980b9;
+}
+
+.edit-post-info>div>input {
+  width        : 80%;
+  color        : #2c3e50;
+  font-size    : 16px;
+  padding      : 4px;
+  border       : none;
+  border-bottom: #2980b9 solid 2px;
+  display      : inline-block;
+}
+
+.edit-post-info>div>ul {
+  list-style-type: none;
+  display        : inline-block;
+}
+
+.edit-post-info>div>ul>li {
+  display  : inline-block;
+  margin   : 2px 4px;
+  font-size: 16px;
+}
+
+.edit-tags-list>ul {
+  width        : 80%;
+  border-bottom: #2980b9 solid 2px;
+}
+
+.edit-add-tag {
+  height       : 26px;
+  color        : white;
+  background   : #3498db;
+  margin       : 2px 4px;
+  border-radius: 50px;
+  position     : relative;
+}
+
+.edit-add-tag>span {
+  font-size  : 14px;
+  line-height: 24px;
+  margin     : 4px;
+  padding    : 4px;
+}
+
+.edit-add-tag>input {
+  width      : 120px;
+  line-height: 24px;
+  padding    : 0 8px;
+  background : none;
+  border     : none;
+  outline    : none;
+  font-size  : 14px;
+  color      : white;
+}
+
+.edit-add-tag>input::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+}
+
+.edit-add-tag>input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: white;
+}
+
+.edit-add-tag>input::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: white;
+}
+
+.edit-add-tag>ul {
+  position       : absolute;
+  top            : 26px;
+  left           : 0;
+  list-style-type: none;
+  color          : #2c3e50;
+  background     : white;
+  border         : #2c3e50 solid 2px;
+  border-radius  : 4px;
+  padding        : 6px;
+}
+
+.edit-add-tag>ul>li {
+  font-size: 16px;
+  padding  : 2px 0;
+}

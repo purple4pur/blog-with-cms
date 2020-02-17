@@ -4,6 +4,7 @@ import { Field, reduxForm } from 'redux-form';
 
 import { PostContent } from 'containers'
 import { addPost, fetchTags } from 'redux/actions'
+import './index.css'
 
 class NewPost extends PureComponent {
   constructor(props) {
@@ -37,11 +38,11 @@ class NewPost extends PureComponent {
         <form>
           <div className="edit-post-info" onKeyDown={e => { if (e.key === 'Enter') e.preventDefault() }}>
             <div>
-              <span>标题：</span>
+              <span>标题</span>
               <Field component="input" type="text" name="title" value={this.state.title} onChange={this.updateTitle} />
             </div>
             <div>
-              <span>栏目：</span>
+              <span>栏目</span>
               <ul>
                 <li>
                   <Field component="input" type="radio" name="category" id="coding" value="1" checked={this.state.category === 1} onChange={this.updateCategory} />
@@ -57,26 +58,32 @@ class NewPost extends PureComponent {
                 </li>
               </ul>
             </div>
-            <div>
-              <span>标签：</span>
+            <div className="edit-tags-list">
+              <span>标签</span>
               <ul>
                 {
                   this.state.tags.map(tag => (
                     <li key={tag.id}>
-                      <span>{tag.name}</span>
-                      <i className="fas fa-times-circle" onClick={this.handleDelTag.bind(this, tag.id)}></i>
+                      <span>
+                        {tag.name + ' '}
+                        <i className="fas fa-times-circle" onClick={this.handleDelTag.bind(this, tag.id)}></i>
+                      </span>
                     </li>
                   ))
                 }
-                <li>
+                <li className="edit-add-tag">
                   <input type="text" name="tag-input" id="tag-input" placeholder="回车以添加标签" onKeyUp={this.handleAddTag} onChange={this.updateCandidateTags} autoComplete="off" />
-                  <ul>
-                    {
-                      this.state.candidateTags.map(tag => (
-                        <li key={tag.id} onClick={this.handleAddTag.bind(this, tag.name)}>{tag.name}</li>
-                      ))
-                    }
-                  </ul>
+                  {
+                    this.state.candidateTags.length
+                      ? <ul>
+                        {
+                          this.state.candidateTags.map(tag => (
+                            <li key={tag.id} onClick={this.handleAddTag.bind(this, tag.name)}>{tag.name}</li>
+                          ))
+                        }
+                      </ul>
+                      : null
+                  }
                 </li>
               </ul>
             </div>
