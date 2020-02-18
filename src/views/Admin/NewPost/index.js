@@ -16,7 +16,10 @@ class NewPost extends PureComponent {
       content: '',
       category: 1,
       tags: [],
-      candidateTags: []
+      candidateTags: [],
+      label_1: {},
+      label_2: { 'color': '#bdc3c7' },
+      preview: { 'zIndex': '-1' }
     }
   }
 
@@ -89,13 +92,15 @@ class NewPost extends PureComponent {
             </div>
           </div>
           <div className="edit-post-content">
-            <div>
-              <span>正文：</span>
-              <Field component="textarea" name="content" cols="50" rows="10" value={this.state.content} onChange={this.updateContent} />
+            <div id="type">
+              <span style={this.state.label_1} onClick={this.setToEdit}>正文</span>
+              <span style={this.state.label_2} onClick={this.setToPreview}>正文预览</span>
             </div>
-            <div>
-              <span>正文预览：</span>
-              <PostContent content={this.state.content} />
+            <div id="display">
+              <Field component="textarea" name="content" value={this.state.content} onChange={this.updateContent} />
+              <div style={this.state.preview}>
+                <PostContent content={this.state.content} />
+              </div>
             </div>
           </div>
           <div className="edit-post-btn">
@@ -168,6 +173,23 @@ class NewPost extends PureComponent {
       tags: this.state.tags.filter(tag => (tag.id !== id))
     })
   }
+
+  setToEdit = () => {
+    this.setState({
+      label_1: {},
+      label_2: { 'color': '#bdc3c7' },
+      preview: { 'z-index': '-1' }
+    })
+  }
+
+  setToPreview = () => {
+    this.setState({
+      label_1: { 'color': '#bdc3c7' },
+      label_2: {},
+      preview: { 'z-index': '0' }
+    })
+  }
+
 
   updateContent = e => {
     this.setState({ content: e.target.value })
