@@ -7,8 +7,8 @@ export default class PostItem extends PureComponent {
       return (
         <li>
           <h3><Link to={'/post/' + this.props.id}>{this.props.title}</Link></h3>
-          <span><i>{this.props.time.split(' ')[0]}</i></span>
-          <span><i>{this.props.author}</i></span>
+          <span>{this.props.time.split(' ')[0]}</span>
+          <span>{this.props.author}</span>
         </li>
       )
     } else {

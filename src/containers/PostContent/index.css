@@ -1,6 +1,6 @@
 .markdown-body p {
   font-size  : 16px;
-  margin     : 22px 0;
+  margin     : 20px 0;
   line-height: 1.6em;
 }
 
@@ -44,7 +44,7 @@
 }
 
 .markdown-body a {
-  color  : #2980b9;
+  color  : #3498db;
   outline: none;
 }
 
@@ -99,7 +99,7 @@
 
 .markdown-body pre {
   margin            : 10px 0;
-  padding           : 10px 16px;
+  padding           : 10px;
   background        : #f1f2f6;
   border-radius     : 8px;
   overflow-x        : scroll;
@@ -112,6 +112,7 @@
 }
 
 .markdown-body pre>code {
+  font-size : 14px;
   padding   : 0;
   background: none;
 }
