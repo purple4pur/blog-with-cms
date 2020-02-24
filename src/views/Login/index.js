@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 
 import './index.css'
 import { verifyLogin, verifyToken } from 'redux/actions'
@@ -23,39 +24,44 @@ class Login extends PureComponent {
 
     } else if (!this.props.isLoggedIn) {
       return (
-        <div className="login-box">
-          <form className="login-form">
-            <div className="login-txtb">
-              <input type="text"
-                name="username"
-                placeholder="USERNAME"
-                value={this.state.user}
-                autoComplete="off"
-                onChange={this.handleChgUser}
-                onFocus={this.handleFocus1}
-                onBlur={this.handleBlur1}
-              />
-              <div className={'login-txtb-not-focus' + (this.state.focus1 ? ' login-txtb-focus' : '')}></div>
-            </div>
-            <div className="login-txtb">
-              <input
-                type="password"
-                name="password"
-                placeholder="********"
-                value={this.state.pwd}
-                autoComplete="off"
-                onChange={this.handleChgPwd}
-                onFocus={this.handleFocus2}
-                onBlur={this.handleBlur2}
-              />
-              <div className={'login-txtb-not-focus' + (this.state.focus2 ? ' login-txtb-focus' : '')}></div>
-            </div>
-            <div className="login-btns">
-              <input type="submit" value="登陆" onClick={this.handleSubmit} />
-              <input type="reset" value="重置" onClick={this.handleReset} />
-            </div>
-          </form>
-        </div>
+        <>
+          <Helmet>
+            <title>登陆 - CMS | Purple4pur's Blog</title>
+          </Helmet>
+          <div className="login-box">
+            <form className="login-form">
+              <div className="login-txtb">
+                <input type="text"
+                  name="username"
+                  placeholder="USERNAME"
+                  value={this.state.user}
+                  autoComplete="off"
+                  onChange={this.handleChgUser}
+                  onFocus={this.handleFocus1}
+                  onBlur={this.handleBlur1}
+                />
+                <div className={'login-txtb-not-focus' + (this.state.focus1 ? ' login-txtb-focus' : '')}></div>
+              </div>
+              <div className="login-txtb">
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="********"
+                  value={this.state.pwd}
+                  autoComplete="off"
+                  onChange={this.handleChgPwd}
+                  onFocus={this.handleFocus2}
+                  onBlur={this.handleBlur2}
+                />
+                <div className={'login-txtb-not-focus' + (this.state.focus2 ? ' login-txtb-focus' : '')}></div>
+              </div>
+              <div className="login-btns">
+                <input type="submit" value="登陆" onClick={this.handleSubmit} />
+                <input type="reset" value="重置" onClick={this.handleReset} />
+              </div>
+            </form>
+          </div>
+        </>
       )
 
     } else {

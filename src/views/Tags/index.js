@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+import { Helmet } from 'react-helmet'
 
 import { TagList, PostList } from 'containers'
 import { fetchTags } from 'redux/actions'
@@ -12,10 +13,6 @@ class Tags extends PureComponent {
     this.state = {
       tagName: ''
     }
-  }
-
-  componentDidMount() {
-    document.title = "标签 | Purple4pur's Blog"
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -34,6 +31,9 @@ class Tags extends PureComponent {
     if (this.props.match.params.tagID) {
       return (
         <>
+          <Helmet>
+            <title>#{this.state.tagName} - 标签 | Purple4pur's Blog</title>
+          </Helmet>
           <div className="tags-header">
             <h1>带有 #{this.state.tagName} 标签的文章</h1>
             <p></p>
@@ -45,6 +45,9 @@ class Tags extends PureComponent {
     } else {
       return (
         <>
+          <Helmet>
+            <title>标签 | Purple4pur's Blog</title>
+          </Helmet>
           <div className="tags-header">
             <h1>所有标签</h1>
             <p></p>

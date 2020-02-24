@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { Helmet } from 'react-helmet'
 
 import { verifyToken, removeToken, fetchPost } from 'redux/actions'
 import { Login } from 'views'
@@ -11,7 +12,6 @@ import Draft from './Draft'
 import Private from './Private'
 
 const title = {
-  'login': '登陆',
   'manage': '文章管理',
   'newpost': '文章发布',
   'draft': '草稿箱',
@@ -30,7 +30,6 @@ class Admin extends PureComponent {
   }
 
   componentDidMount() {
-    document.title = title[this.state.activeView] + " - CMS | Purple4pur's Blog"
     this.props.verifyToken()
     if (this.state.postID) {
       this.props.fetchPost(this.state.postID, 'edit')
@@ -48,6 +47,9 @@ class Admin extends PureComponent {
     } else if (this.props.isLoggedIn) {
       return (
         <>
+          <Helmet>
+            <title>{title[this.state.activeView] + " - CMS | Purple4pur's Blog"}</title>
+          </Helmet>
           <span>已经登陆为：{this.props.activeUser}</span>
           <input type="button" value="退出" onClick={this.handleRmToken} />
           <AdminNav view={this.state.activeView} />

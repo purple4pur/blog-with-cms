@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 
 import { PostContent } from 'containers'
 import { fetchPost } from 'redux/actions'
@@ -13,12 +14,14 @@ class Post extends PureComponent {
   }
 
   render() {
-    document.title = (this.props.data.title ? this.props.data.title + ' - ' : '') + "Purple4pur's Blog"
     if (this.props.isLoading) {
       return <div>loading...</div>
     } else {
       return (
         <>
+          <Helmet>
+            <title>{(this.props.data.title ? this.props.data.title + ' - ' : '') + "Purple4pur's Blog"}</title>
+          </Helmet>
           <div className="title-info">
             <h1>{this.props.data.title}</h1>
             <span>
