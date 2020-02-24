@@ -74,19 +74,20 @@
 - [x] 栏目页和标签页的样式
 - [x] 提交文章时选择标签
 - [x] 用 react-helmet 库控制标题
+- [x] 文章内图片样式
 
 ## 本地搭建
 
-1. clone 或 fork
+1. clone
    ```
    git clone git@github.com:purple4pur/blog-with-cms.git
    cd blog-with-cms
    ```
-1. 安装依赖库
+2. 安装依赖库
    ```
    npm install
    ```
-2. 启动调试
+3. 启动调试
    ```
    npm start
    ```

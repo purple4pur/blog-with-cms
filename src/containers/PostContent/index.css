@@ -124,6 +124,14 @@
   border-radius: 2px;
 }
 
+.markdown-body img {
+  max-width : Calc(100vw - 140px);
+  max-height: 260px;
+  margin    : 20px auto;
+  display   : block;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16), 0 6px 20px 0 rgba(0, 0, 0, 0.18);
+}
+
 @media only screen and (min-width: 600px) {
   /* for tablets and desktops */
 
@@ -154,5 +162,18 @@
 
   .markdown-body th {
     border-bottom: #16a085 solid 3px;
+  }
+
+  .markdown-body img {
+    max-width : 400px;
+    max-height: 360px;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  /* for desktops */
+
+  .markdown-body img {
+    max-width: 600px;
   }
 }
