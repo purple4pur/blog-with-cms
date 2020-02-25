@@ -1,10 +1,15 @@
 import React, { PureComponent } from 'react'
 
+import { PostList } from 'containers'
+import './index.css'
+
 export default class Home extends PureComponent {
   render() {
     return (
       <>
-        <h1>一贫如洗的首页<br />还没想好放什么内容<br />不如先看看其他页面？</h1>
+        <h1 className="title"><code id="a">const</code> <code id="b">PURPLE4PUR</code></h1>
+        <pre className="comment"></pre>
+        <PostList categoryID={-1} />
       </>
     )
   }

@@ -2,6 +2,10 @@
 
 > 此文档只记录网页上「看得见」的变化，代码变化请查看 [commit message](https://github.com/purple4pur/blog-with-cms/commits/master)。
 
+### 2020 / 02 / 25
+
+`+` 稍微丰富了首页
+
 ### 2020 / 02 / 24
 
 `+` 增加了图片样式

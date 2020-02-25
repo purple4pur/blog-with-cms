@@ -17,7 +17,7 @@
 }
 
 .post-list>li>span {
-  color       : #7f8c8d;
+  color       : #95a5a6;
   font-size   : 15px;
   margin-right: 8px;
 }
@@ -26,11 +26,12 @@
   /* for tablets and desktops */
 
   .post-list>li {
-    margin-bottom: 22px;
+    margin-bottom: 24px;
   }
 
   .post-list>li>h3 {
     font-size: 20px;
+    margin-bottom: 4px;
   }
 
   .post-list>li>span {

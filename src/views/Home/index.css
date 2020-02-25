@@ -1,0 +1,51 @@
+.title {
+  font-size    : 34px;
+  margin-bottom: 10px;
+}
+
+.title>#a {
+  font-family: Consolas, 'Courier New', Courier, monospace;
+  color      : #9b59b6;
+}
+
+.title>#b {
+  font-family: Consolas, 'Courier New', Courier, monospace;
+  color      : #f1c40f;
+}
+
+.comment {
+  margin-bottom: 40px;
+}
+
+.comment::before {
+  content      : "/** \A  * 一个可能有点粗糙 \A  * 但绝不无聊的个人博客 \A  * 欢迎每一个朋友和陌生人 \A  * 你的来访让这里更有意义 \A  * 希望你能发现有趣的内容 \A  */";
+  white-space  : pre;
+  font-family  : Consolas, 'Courier New', Courier, monospace;
+  font-size    : 14px;
+  font-style   : italic;
+  color        : #bdc3c7;
+  border-radius: 4px;
+}
+
+@media only screen and (min-width: 480px) {
+
+  .title {
+    font-size: 38px;
+  }
+
+  .comment::before {
+    content: "/** \A  * 一个可能有点粗糙  但绝不无聊的个人博客 \A  * 欢迎每一个朋友和陌生人  你的来访让这里更有意义 \A  * 希望你能发现有趣的内容 \A  */";
+    width  : 300px;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+
+  .title {
+    font-size: 46px;
+  }
+
+  .comment {
+    margin-left  : 10px;
+  }
+}
