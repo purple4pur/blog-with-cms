@@ -82,6 +82,7 @@
 
 .markdown-body table {
   border-collapse: collapse;
+  margin     : 20px 0;
 }
 
 .markdown-body th,
