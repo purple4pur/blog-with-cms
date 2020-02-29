@@ -74,13 +74,13 @@ export default class Header extends PureComponent {
 
   render() {
     return (
-      <header>
+      <header className="header">
         <div className="header-ui">
           <span onClick={this.toggleMenu}><i className="fas fa-bars"></i></span>
           <Link to="/"><img src={logo} alt="Purple4pur's Blog" /></Link>
         </div>
         <nav className={'header-nav' + this.state.navClass}>
-          <div className="header-nav-bg-touch" onClick={this.toggleMenu}></div>
+          {/* <div className="header-nav-bg-touch" onClick={this.toggleMenu}></div> */}
           <ul>
 
             <li>
