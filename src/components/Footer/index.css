@@ -12,6 +12,16 @@
   line-height: 16px;
 }
 
+.footer ul {
+  list-style-type: none;
+  display        : inline-block;
+}
+
+.footer li {
+  display    : inline-block;
+  margin-left: 5px;
+}
+
 .footer a {
   color     : #bdc3c7;
   transition: .3s;

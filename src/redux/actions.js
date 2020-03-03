@@ -9,7 +9,8 @@ import {
   verifyStatus,
   updatePost,
   getPvtDftList,
-  getOriPost
+  getOriPost,
+  getLink
 } from 'services'
 
 const startFetchPost = () => ({
@@ -286,7 +287,6 @@ export const addPost = (type, title, content, categoryID, tags) => dispatch => {
   }
   updatePost(localStorage.getItem('purple4pur/blog:JWT'), type, title, content, categoryID, tags)
     .then(resp => {
-      console.log(resp.data)
       if (resp.data.status) {
         dispatch(success)
       } else if (resp.data.errCode) {
@@ -306,5 +306,29 @@ export const addPost = (type, title, content, categoryID, tags) => dispatch => {
     })
     .finally(() => {
       setTimeout(() => { dispatch(resetAddMsg()) }, 3000)
+    })
+}
+
+const fetchLinks = data => ({
+  type: actionTypes.FETCH_LINKS,
+  payload: { data }
+})
+
+export const getLinks = () => dispatch => {
+  getLink()
+    .then(resp => {
+      if (resp.data[0].title) {
+        dispatch(fetchLinks(resp.data))
+      } else if (resp.data.errCode) {
+        console.log(resp.data.errMsg)
+        dispatch(setErrorMsg(resp.data.errCode))
+      } else {
+        console.log('Error: ' + resp.data)
+        dispatch(setErrorMsg(99))
+      }
+    })
+    .catch(err => {
+      console.log(err)
+      dispatch(setErrorMsg(7))
     })
 }

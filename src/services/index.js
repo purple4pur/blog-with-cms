@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 const ajax = axios.create({
-  baseURL: 'https://purple4pur.com/apis'
-  // baseURL: 'http://localhost/php' // debug
+  // baseURL: 'https://purple4pur.com/apis'
+  baseURL: 'http://localhost/php' // debug
 })
 
 ajax.defaults.headers.post['Content-type'] = 'application/json; charset=utf-8'
@@ -68,4 +68,8 @@ export const getOriPost = (token, pid) => (
     decoratedToken: token,
     postID: pid
   })
+)
+
+export const getLink = () => (
+  ajax.get('/links.php')
 )

@@ -7,6 +7,7 @@ import tagList from './tagList'
 import adminStatus from './adminStatus'
 import errorMsg from './errorMsg'
 import addPost from './addPost'
+import linkList from './linkList'
 
 export default combineReducers({
   post,
@@ -15,5 +16,6 @@ export default combineReducers({
   adminStatus,
   errorMsg,
   addPost,
-  form: reduxFormReducer
+  form: reduxFormReducer,
+  linkList,
 })
