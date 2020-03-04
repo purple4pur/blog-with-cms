@@ -31,6 +31,7 @@
   display       : inline-block;
   margin-right  : 14px;
   vertical-align: top;
+  outline       : none;
 }
 
 .about>ul * {
@@ -42,6 +43,14 @@
   color         : #2c3e50;
   font-size     : 20px;
   vertical-align: middle;
+  outline       : none;
+}
+
+.changelog>span>a {
+  color         : #3498db;
+  font-size     : 16px;
+  border-bottom : #3498db solid 1px;
+  padding-bottom: 2px;
 }
 
 @media only screen and (min-width: 600px) {

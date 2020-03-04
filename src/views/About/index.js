@@ -35,6 +35,9 @@ export default class About extends PureComponent {
         <p className="about">
           <span>此博客开源，项目地址：<a href="https://github.com/purple4pur/blog-with-cms" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></span>
         </p>
+        <p className="about changelog">
+          <span><a href="https://github.com/purple4pur/blog-with-cms/blob/master/CHANGELOG.md" target="_blank" rel="noopener noreferrer">博客更新记录</a></span>
+        </p>
       </>
     )
   }
