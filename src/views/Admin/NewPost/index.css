@@ -45,7 +45,7 @@
 
 .edit-tags-list>ul>li>span {
   font-size  : 14px;
-  line-height: 24px;
+  line-height: 26px;
   margin     : 4px;
   padding    : 4px;
 }
@@ -61,7 +61,7 @@
 
 .edit-add-tag>input {
   width      : 120px;
-  line-height: 24px;
+  line-height: 26px;
   padding    : 0 8px;
   background : none;
   border     : none;
@@ -150,4 +150,49 @@
   top          : 0;
   left         : 0;
   padding      : 10px;
+}
+
+.edit-post-btn {
+  height: 30px;
+  margin: 20px;
+}
+
+.edit-post-btn * {
+  float: right;
+}
+
+.edit-post-btn>span {
+  font-size  : 16px;
+  line-height: 32px;
+}
+
+.edit-post-btn>input {
+  margin-left  : 10px;
+  padding      : 6px 8px;
+  font-size    : 16px;
+  color        : #2c3e50;
+  outline      : none;
+  background   : none;
+  border       : none;
+  border-bottom: #3498db solid 2px;
+  transition   : .3s;
+}
+
+.edit-post-btn>input:hover {
+  background: #3498db;
+  color     : white;
+}
+
+@media only screen and (min-width: 600px) {
+
+  .edit-post-content {
+    grid-template-rows: 30px 500px;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+
+  .edit-post-content {
+    grid-template-rows: 30px 700px;
+  }
 }

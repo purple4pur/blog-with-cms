@@ -104,9 +104,9 @@ class NewPost extends PureComponent {
             </div>
           </div>
           <div className="edit-post-btn">
-            <span>{this.props.msg}</span>
-            {/* <input type="submit" value="保存到草稿箱" onClick={this.handleSave} /> */}
             <input type="submit" value="发布" onClick={this.handleAddPost} />
+            {/* <input type="submit" value="保存到草稿箱" onClick={this.handleSave} /> */}
+            <span>{this.props.msg}</span>
           </div>
         </form>
         {this.props.isAdding ? <div>操作中...</div> : null}
