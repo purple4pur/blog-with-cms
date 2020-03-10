@@ -2,6 +2,10 @@
 
 > 此文档只记录网页上「看得见」的变化，代码变化请查看 [commit message](https://github.com/purple4pur/blog-with-cms/commits/master)。
 
+### 2020 / 03 / 10
+
+`+` 船新的全页加载提示，让等待不再尴尬
+
 ### 2020 / 03 / 04
 
 `+` 新增了发布按钮的样式<br />
