@@ -1,2 +1,0 @@
-<?php
-$privateKey = "mNU9jRH9y04wskEQmTMYNgKW0T791MMTXFHJy27FBE27SS5gzrXtefGJziBbZML";

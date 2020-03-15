@@ -18,8 +18,9 @@ export default class About extends PureComponent {
           <span>南京邮电大学 | 大二</span>
         </p>
         <p className="about">
-          <span>杂食兴趣，爱好广泛，主要为视频创作，</span>
-          <span>偶尔也会捣鼓一些看起来很有意思的开发。</span>
+          <span>杂食兴趣，爱好广泛，永远好奇。</span>
+          <span>灵感来了做做视频，灵感没来，就真的没了。</span>
+          <span>敲代码也就图一乐，真学技术还得抱大腿（不是</span>
         </p>
         <p className="about">
           <span>可以在这些地方找到我：</span>
