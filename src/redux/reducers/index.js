@@ -1,13 +1,14 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
 import { reducer as reduxFormReducer } from 'redux-form';
 
-import post from './post'
-import postList from './postList'
-import tagList from './tagList'
-import adminStatus from './adminStatus'
-import errorMsg from './errorMsg'
-import addPost from './addPost'
-import linkList from './linkList'
+import post from './post';
+import postList from './postList';
+import tagList from './tagList';
+import adminStatus from './adminStatus';
+import errorMsg from './errorMsg';
+import addPost from './addPost';
+import linkList from './linkList';
+import comment from './comment';
 
 export default combineReducers({
   post,
@@ -18,4 +19,5 @@ export default combineReducers({
   addPost,
   form: reduxFormReducer,
   linkList,
-})
+  comment
+});

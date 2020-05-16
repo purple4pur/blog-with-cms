@@ -1,15 +1,14 @@
-import React, { PureComponent } from 'react'
-import { connect } from 'react-redux'
+import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
 
-import { getLinks } from 'redux/actions'
+import { getLinks } from 'redux/actions';
 
 class LinkList extends PureComponent {
   componentDidMount() {
-    this.props.getLinks()
+    this.props.getLinks();
   }
 
   render() {
-    console.log(this.props.links)
     return (
       <ul>
         {
@@ -18,14 +17,14 @@ class LinkList extends PureComponent {
           ))
         }
       </ul>
-    )
+    );
   }
 }
 
 const mapToProps = state => ({
   links: state.linkList.links
-})
+});
 
 export default connect(
   mapToProps, { getLinks }
-)(LinkList)
+)(LinkList);
