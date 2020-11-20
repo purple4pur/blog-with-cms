@@ -6,7 +6,7 @@
 
 开源的个人博客，线上地址 [www.purple4pur.com](https://purple4pur.com)。
 
-搭建这个博客得到了舍友 [ketchuppp](https://github.com/ketchuppp) 的启发（ballball大佬带带我），看他在 [他的博客](https://ketchuppp.xyz/) 上记录和分享内容我觉得很赞。于是寒假期间瞎学习了一波，打算纯手撸一个博客，当然现在还在逐步搭建中，希望上学前能有一个比较完整的面貌。
+搭建这个博客得到了舍友 [Yuhi](https://github.com/yuhixyz) 的启发（ballball大佬带带我），看他在 [他的博客](https://yuhi.xyz/) 上记录和分享内容我觉得很赞。于是寒假期间瞎学习了一波，打算纯手撸一个博客，当然现在还在逐步搭建中，希望上学前能有一个比较完整的面貌。
 
 本 repo 是从一个私人仓库复制过来的，所以有一些初始进度，以后代码会直接提交到这里。
 
