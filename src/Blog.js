@@ -14,7 +14,8 @@ import {
   Tags,
   NotFound,
   Admin,
-  Post
+  Post,
+  MurasameChanHelp
 } from 'views'
 
 class Blog extends Component {
@@ -31,6 +32,7 @@ class Blog extends Component {
             <Route exact path="/tags/:tagID?" component={Tags} />
             <Route exact path="/post/:id" component={Post} />
             <Route exact path="/about" component={About} />
+            <Route exact path="/murasame-chan" component={MurasameChanHelp} />
             <Route exact path="/admin/:viewSelector?/:postID?" component={Admin} />
             <Route exact path="/404" component={NotFound} />
             <Redirect to="/404" />
