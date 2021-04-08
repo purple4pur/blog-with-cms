@@ -14,6 +14,7 @@ const HELP =
 | \`/roll [arg1] [arg2] <...>\`                 | 专治选择困难            | \`/roll 芳乃 从雨 茉子\` |
 | \`/[...是不是/要不要...]\`, \`/[...有没有...]\` | 回答型人工智障          | \`/芳乃酱可不可爱？\`    |
 | \`/sleep\`, \`/睡觉\`                           | 该睡觉啦zzz             |                        |
+| \`/contact\`, \`/feedback\`, \`/反馈\` + \`[反馈内容]\` | 有什么想对我的主人说的呢？ | \`/contact 从雨酱你不够可爱\` |
 
 前往 [Github](https://github.com/purple4pur/murasame-chan) 查看最新版本`
 
