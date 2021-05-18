@@ -118,7 +118,6 @@
 
 关于本 repo 的任何问题，可以移步 [Issues](https://github.com/purple4pur/blog-with-cms/issues)，我也会在 [Issues](https://github.com/purple4pur/blog-with-cms/issues) 里记录开发中的一些问题。也欢迎从以下方式直接联系我（**务必备注清楚**），一起交流学习。
 
-- Wechat: erCtain
 - E-mail: [pruple4pur@gmail.com](mailto:purple4pur@gmail.com)
 
 ## 注意
